@@ -1,5 +1,5 @@
 # HW-Compilation
-A simple programming language that can be compiled to Verilog. This was a project for the compilers course at FIB (UPC).
+A simple programming language that can be compiled to Verilog.
 Authors: @gispsan and Sergio Rodríguez Guasch (me).
 
 ## Language details
