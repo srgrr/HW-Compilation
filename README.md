@@ -15,4 +15,4 @@ Authors: @gispsan and Sergio Rodríguez Guasch (me).
 Write your .hwc program, then run the command _java -jar <your path>/HWCompilation.jar inputpath_
 
 ## More info
-This project was inspired by the paper Hardware compilation: Translating programs into circuits of N.Wirth.
+This project was inspired by the paper _Hardware compilation: Translating programs into circuits_ of N.Wirth.
