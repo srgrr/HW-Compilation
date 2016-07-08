@@ -1,0 +1,56 @@
+VECTOR_SIZE 64
+
+
+FUNC mod_int64
+    ARG a, b GRA
+
+    IF b < 0 THEN
+        b = -b;
+    FI;
+    WHILE a < 0 DO
+        a = a + b;
+    ELIHW;
+    WHILE a >= b DO
+        a = a - b;
+    ELIHW;
+    mod_int64 = a;
+CNUF
+
+
+FUNC gcd_int64
+    ARG a, b GRA
+    VAR tmp RAV    
+
+    WHILE b != 0 DO
+        tmp = b;
+        b = mod_int64(a, b);
+        a = tmp;
+    ELIHW;
+    gcd_int64 = a;
+CNUF
+
+
+FUNC gcd_positive_int64
+    ARG a, b GRA
+
+    WHILE a != b DO
+        IF a > b THEN
+            a = a - b;
+        ELSE
+            b = b - a;
+        FI;
+    ELIHW;
+    gcd_positive_int64 = a;
+CNUF
+
+
+FUNC main
+    VAR x, y RAV
+    
+    x = mod_int64(-154, -25);
+    main = x;
+    y = gcd_int64(30, x);
+    main = y;
+    main = gcd_positive_int64(16, x);
+    main = gcd_int64(-8, 30);
+CNUF

@@ -1,0 +1,62 @@
+VECTOR_SIZE 64
+
+
+FUNC encrypt_int32
+    ARG v, k, kk GRA
+    VAR s, i, d, v0, v1, k0, k1, k2, k3 RAV
+
+    v0 = v & 0x00000000FFFFFFFF;
+    v1 = (v >> 32) & 0xFFFFFFFF00000000;
+    k0 = kk & 0x00000000FFFFFFFF;
+    k1 = (kk >> 32) & 0xFFFFFFFF00000000;
+    k2 = k & 0x00000000FFFFFFFF;
+    k3 = (k >> 32) & 0xFFFFFFFF00000000;
+    d = 0x000000009e3779b9;
+    s = 0;
+    i = 0;
+    WHILE i < 32 DO
+        s = s + d;
+        v0 = v0 + (((v1 << 4) + k0) ^ (v1 + s) ^ ((v1 >> 5) + k1));
+        v1 = v1 + (((v0 << 4) + k2) ^ (v0 + s) ^ ((v0 >> 5) + k3));
+        i = i + 1;
+    ELIHW;
+    encrypt_int32 = (v0 & 0x00000000FFFFFFFF) | ((v1 << 32) & 0xFFFFFFFF00000000);
+CNUF
+
+
+FUNC decrypt_int32
+    ARG v, k, kk GRA
+    VAR s, i, d, v0, v1, k0, k1, k2, k3 RAV
+
+    v0 = v & 0x00000000FFFFFFFF;
+    v1 = (v >> 32) & 0xFFFFFFFF00000000;
+    k0 = kk & 0x00000000FFFFFFFF;
+    k1 = (kk >> 32) & 0xFFFFFFFF00000000;
+    k2 = k & 0x00000000FFFFFFFF;
+    k3 = (k >> 32) & 0xFFFFFFFF00000000;
+    d = 0x000000009e3779b9;
+    s = 0x00000000c6ef3720;
+    i = 0;
+    WHILE i < 32 DO
+        v1 = v1 - (((v0 << 4) + k2) ^ (v0 + s) ^ ((v0 >> 5) + k3));
+        v0 = v0 - (((v1 << 4) + k0) ^ (v1 + s) ^ ((v1 >> 5) + k1));
+        s = s - d;
+        i = i + 1;
+    ELIHW;
+    decrypt_int32 = (v0 & 0x00000000FFFFFFFF) | ((v1 << 32) & 0xFFFFFFFF00000000);
+CNUF
+
+
+FUNC main
+    ARG v, k, kk GRA
+    VAR w, r RAV
+
+    w = encrypt_int32(v, k, kk);
+    IF decrypt_int32(w, k, kk) == v THEN
+        r = 1;
+    ELSE
+        r = 0;
+    FI;
+    main = r;
+CNUF
+

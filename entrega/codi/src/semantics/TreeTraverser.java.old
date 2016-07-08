@@ -1,0 +1,131 @@
+package semantics;
+import parser.*;
+import semantics.*;
+import java.io.*;
+import java.util.*;
+import org.antlr.runtime.*;
+import org.antlr.runtime.CharStream;
+import org.antlr.runtime.tree.*;
+import org.antlr.stringtemplate.*;
+/*
+	Classe que realitza comprovacions semantiques.
+	Rep com entrada un AST (aixo vol dir que aqui se suposa que el programa es sintacticament correcte)
+*/
+public class TreeTraverser {
+
+	// Nom de les funcions
+	private TreeSet<String> functionNames = new TreeSet<>();
+	// Arbre sintactic previament obtingut
+	private CommonTree root;
+	// Nodes de les funcions.
+	private HashMap< String, CommonTree > functions = new HashMap<>();
+	// Log d'errors i warnings, es van afegint segons es troben.
+	private String errorLog;
+	// Graf de crides
+	private HashMap< String, TreeSet<String> >  callGraph = new HashMap<>();
+	// Equivalent a un vector de visitats
+	private TreeSet<String> vis = new TreeSet<>();
+	// Parent (o callers) de les funcions.
+	private HashMap<String, String> parent;
+
+	private boolean ko;
+
+
+	// Llegir nom de funcions.
+	private void getFunctionNames() {
+		for(int i=1; i<root.getChildCount(); ++i) {
+			if(root.getChild(i).getType() == hw_compilationLexer.FUNC) {
+				String functionName = root.getChild(i).getChild(0).getText();
+				if(functionNames.contains(functionName)) {
+					errorLog += "Error: La funcio " + functionName + " esta declarada en dos llocs diferents.\n";
+					ko = true;
+				}
+				functionNames.add(functionName);
+				functions.put(functionName, (CommonTree)root.getChild(i));
+			}
+		}
+		if(!functionNames.contains("MAIN")) {
+			errorLog += "Error: No hi ha funcio principal definida.\n";
+			ko = true;
+		}
+	}
+
+
+	// Recorrem l'arbre partint d'un node FUNC.
+	private void traverseTree(CommonTree currentNode) {
+		String funcName = currentNode.getChild(0).getText();
+		// Si ja hem visitat aquesta funcio tornem.
+		if(vis.contains(funcName)) return;
+		// Afegim la funcio actual a la llista de visitats.
+		vis.add(funcName);
+		// Afegim els arguments i les variables a un conjunt.
+		int offset = 1;
+		CommonTree arguments = (CommonTree)currentNode.getChild(1);
+		TreeSet<String> namesInScope = new TreeSet<>();
+		if(arguments.getType() == hw_compilationLexer.ARG) {
+			++offset;
+			for(int i=0; i<arguments.getChildCount(); ++i) {
+				String varName = arguments.getChild(i).getText();
+				if(namesInScope.contains(varName)) {
+					errorLog += "Error: A la funcio " + funcName + " es declara dues vegades l'argument o variable " + varName + "\n";
+				}
+				namesInScope.add(varName);
+			}
+		}
+		CommonTree variables = (CommonTree)currentNode.getChild(offset);
+		if(variables.getType() == hw_compilationLexer.VAR) {
+			++offset;
+			for(int i=0; i<variables.getChildCount(); ++i) {
+				String varName = variables.getChild(i).getText();
+				if(namesInScope.contains(varName)) {
+					errorLog += "Error: A la funcio " + funcName + " es declara dues vegades l'argument o variable " + varName + "\n";
+					ko = true;
+				}
+				namesInScope.add(varName);
+			}
+		}
+		// Addiccionalment, comprovem que cap parametre es digui igual que una funcio.
+		for(String var : namesInScope) {
+			if(functionNames.contains(var)) {
+				errorLog += "Error: A la funcio " + funcName + " es declara una variable o parametre amb el nom de " + var + ", el qual tambe correspon a una funcio.\n";
+				ko = true;
+			}
+		}
+		if(ko) return;
+		// Donat que no tenen sentit els procediments "void"
+		// considerarem que es un error el fet de no retornar res.
+		boolean hasReturnStatement = false;
+		// Iterem sobre la resta de fills de la funcio.
+		// Offset conte l'index del primer node que ja no es nom de funcio, arg o var.
+		for(int i=offset; i<currentNode.getChildCount(); ++i) {
+			if(ko) return;
+			CommonTree childNode = (CommonTree)currentNode.getChild(i);
+			if(childNode.getType() == hw_compilationLexer.EQ) {
+				if(childNode.getChild(0).getText() == funcName) hasReturnStatement = true;
+			}
+		}
+
+		if(!hasReturnStatement) {
+			errorLog += "Error: La funcio " + funcName + " no conte cap valor de retorn.\n";
+		}
+
+	}
+
+
+	public TreeTraverser(CommonTree tree) {
+		ko = false;
+		errorLog = "";
+		root = tree;
+		getFunctionNames();
+		if(!ko) {
+			traverseTree(functions.get("MAIN"));
+		}
+		System.out.println(errorLog);
+	}
+
+	public boolean isCorrect() {
+		return errorLog.equals("");
+	}
+
+
+}

@@ -1,0 +1,6 @@
+VECTOR_SIZE 4
+
+FUNC main
+    main = 3;
+CNUF
+

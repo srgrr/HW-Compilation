@@ -1,0 +1,123 @@
+VECTOR_SIZE 64
+
+
+FUNC mod_int64
+    ARG a, b GRA
+
+    IF b < 0 THEN
+        b = -b;
+    FI;
+    WHILE a < 0 DO
+        a = a + b;
+    ELIHW;
+    WHILE a >= b DO
+        a = a - b;
+    ELIHW;
+    mod_int64 = a;
+CNUF
+
+
+FUNC mult_int64
+    ARG a, b GRA
+    VAR m, s RAV
+
+    m = 0;
+    s = 1;
+    IF a < 0 THEN s = -s; a = -a; FI; 
+    IF b < 0 THEN s = -s; b = -b; FI;
+    WHILE a != 0 DO
+        IF a & 1 THEN 
+            m = m + b;
+        FI;
+        a = a >> 1;
+        b = b << 1;
+    ELIHW;
+    IF s == -1 THEN m = -m; FI;
+    mult_int64 = m;
+CNUF
+
+
+FUNC div_int64
+    ARG a, b GRA
+    VAR d, sa, sb RAV
+
+    d = 0;
+    sa = 1;
+    sb = 1;
+    IF a < 0 THEN sa = -1; a = -a; FI;
+    IF b < 0 THEN sb = -1; b = -b; FI;
+    WHILE a >= b DO 
+        a = a - b; 
+        d = d + 1; 
+    ELIHW;
+    IF sa == -1 AND a != 0 THEN 
+        d = d + 1; 
+    FI;
+    IF sa != sb THEN
+        d = -d;
+    FI;
+    div_int64 = d;
+CNUF
+
+
+FUNC gcd_int64
+    ARG a, b GRA
+    VAR tmp RAV    
+
+    WHILE b != 0 DO
+        tmp = b;
+        b = mod_int64(a, b);
+        a = tmp;
+    ELIHW;
+    gcd_int64 = a;
+CNUF
+
+
+FUNC gcd_positive_int64
+    ARG a, b GRA
+
+    WHILE a != b DO
+        IF a > b THEN
+            a = a - b;
+        ELSE
+            b = b - a;
+        FI;
+    ELIHW;
+    gcd_positive_int64 = a;
+CNUF
+
+
+FUNC jacobi_symbol_int64
+    ARG a, b GRA
+    VAR r, tmp, end RAV
+
+    end = 0;
+    IF b < 0 THEN b = -b; FI;
+    WHILE !end DO
+        a = mod_int64(a, b);
+        WHILE a AND !(a & 1) DO 
+            tmp = (mult_int64(b, b) - 1) >> 3;
+            IF tmp & 1 THEN 
+                r = -r;
+            FI;
+            a = a >> 1;
+        ELIHW;
+        IF a == 1 THEN 
+            end = 1; 
+        FI;
+        IF gcd_int64(a, b) != 1 THEN
+            r = 0;
+            end = 1;
+        FI;
+        tmp = a;
+        a = b;
+        b = tmp;
+    ELIHW;
+    jacobi_symbol_int64 = r;
+CNUF
+
+
+FUNC main
+    main = jacobi_symbol_int64(1, 4);
+CNUF
+

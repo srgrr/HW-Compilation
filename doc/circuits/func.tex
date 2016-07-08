@@ -1,0 +1,296 @@
+\documentclass[tikz,12pt,border=12pt]{standalone}
+
+\usepackage{mathpazo}
+\usepackage[scaled=1.03,varqu]{zi4}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{pgf,tikz}
+\usetikzlibrary{circuits.logic.US}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\makeatletter
+
+% Data Flip Flip (DFF) shape
+\pgfdeclareshape{dff}{
+  % The 'minimum width' and 'minimum height' keys, not the content, determine
+  % the size
+  \savedanchor\northeast{%
+    \pgfmathsetlength\pgf@x{\pgfshapeminwidth}%
+    \pgfmathsetlength\pgf@y{\pgfshapeminheight}%
+    \pgf@x=0.5\pgf@x
+    \pgf@y=0.5\pgf@y
+  }
+  % This is redundant, but makes some things easier:
+  \savedanchor\southwest{%
+    \pgfmathsetlength\pgf@x{\pgfshapeminwidth}%
+    \pgfmathsetlength\pgf@y{\pgfshapeminheight}%
+    \pgf@x=-0.5\pgf@x
+    \pgf@y=-0.5\pgf@y
+  }
+  % Inherit from rectangle
+  \inheritanchorborder[from=rectangle]
+
+  % Define same anchor a normal rectangle has
+  \anchor{center}{\pgfpointorigin}
+  \anchor{north}{\northeast \pgf@x=0pt}
+  \anchor{east}{\northeast \pgf@y=0pt}
+  \anchor{south}{\southwest \pgf@x=0pt}
+  \anchor{west}{\southwest \pgf@y=0pt}
+  \anchor{north east}{\northeast}
+  \anchor{north west}{\northeast \pgf@x=-\pgf@x}
+  \anchor{south west}{\southwest}
+  \anchor{south east}{\southwest \pgf@x=-\pgf@x}
+  \anchor{text}{
+    \pgfpointorigin
+    \advance\pgf@x by -.5\wd\pgfnodeparttextbox%
+    \advance\pgf@y by -.5\ht\pgfnodeparttextbox%
+    \advance\pgf@y by +.5\dp\pgfnodeparttextbox%
+  }
+
+  % Define anchors for signal ports
+  \anchor{D}{
+    \pgf@process{\northeast}%
+    \pgf@x=-1\pgf@x%
+    \pgf@y=.5\pgf@y%
+  }
+  \anchor{CLK}{
+    \pgf@process{\northeast}%
+    \pgf@x=-1\pgf@x%
+    \pgf@y=-.66666\pgf@y%
+  }
+  \anchor{Q}{
+    \pgf@process{\northeast}%
+    \pgf@y=0pt%
+  }
+  \anchor{R}{
+    \pgf@process{\northeast}%
+    \pgf@x=0pt%
+  }
+  \anchor{E}{
+    \pgf@process{\northeast}%
+    \pgf@x=0pt%
+    \pgf@y=-\pgf@y%
+  }
+  % Draw the rectangle box and the port labels
+  \backgroundpath{
+    % Rectangle box
+    \pgfpathrectanglecorners{\southwest}{\northeast}
+    % Angle (>) for clock input
+    \pgf@anchor@dff@CLK
+    \pgf@xa=\pgf@x \pgf@ya=\pgf@y
+    \pgf@xb=\pgf@x \pgf@yb=\pgf@y
+    \pgf@xc=\pgf@x \pgf@yc=\pgf@y
+    \pgfmathsetlength\pgf@x{1.6ex} % size depends on font size
+    \advance\pgf@ya by \pgf@x
+    \advance\pgf@xb by \pgf@x
+    \advance\pgf@yc by -\pgf@x
+    \pgfpathmoveto{\pgfpoint{\pgf@xa}{\pgf@ya}}
+    \pgfpathlineto{\pgfpoint{\pgf@xb}{\pgf@yb}}
+    \pgfpathlineto{\pgfpoint{\pgf@xc}{\pgf@yc}}
+    \pgfclosepath
+
+    % Draw port labels
+    \begingroup
+    \tikzset{flip flop/port labels} % Use font from this style
+    \tikz@textfont
+
+    \pgf@anchor@dff@D
+    \pgftext[left,base,at={\pgfpoint{\pgf@x}{\pgf@y}},x=\pgfshapeinnerxsep]{\raisebox{-0.75ex}{D}}
+
+    \pgf@anchor@dff@Q
+    \pgftext[right,base,at={\pgfpoint{\pgf@x}{\pgf@y}},x=-\pgfshapeinnerxsep]{\raisebox{-.75ex}{Q}}
+
+    \pgf@anchor@dff@R
+    \pgftext[top,at={\pgfpoint{\pgf@x}{\pgf@y}},y=-\pgfshapeinnerysep]{R}
+
+    \pgf@anchor@dff@E
+    \pgftext[bottom,at={\pgfpoint{\pgf@x}{\pgf@y}},y=\pgfshapeinnerysep]{E}
+    \endgroup
+  }
+}
+
+% Key to add font macros to the current font
+\tikzset{add font/.code={\expandafter\def\expandafter\tikz@textfont\expandafter{\tikz@textfont#1}}} 
+
+% Define default style for this node
+\tikzset{flip flop/port labels/.style={font=\rmfamily\scriptsize}}
+\tikzset{every dff node/.style={draw,minimum width=2cm,minimum 
+height=2.828427125cm,inner sep=1mm,outer sep=0pt,cap=round,add 
+font=\rmfamily}}
+
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\makeatletter
+
+% Data Flip Flip (DFF) shape
+\pgfdeclareshape{dffne}{
+  % The 'minimum width' and 'minimum height' keys, not the content, determine
+  % the size
+  \savedanchor\northeast{%
+    \pgfmathsetlength\pgf@x{\pgfshapeminwidth}%
+    \pgfmathsetlength\pgf@y{\pgfshapeminheight}%
+    \pgf@x=0.5\pgf@x
+    \pgf@y=0.5\pgf@y
+  }
+  % This is redundant, but makes some things easier:
+  \savedanchor\southwest{%
+    \pgfmathsetlength\pgf@x{\pgfshapeminwidth}%
+    \pgfmathsetlength\pgf@y{\pgfshapeminheight}%
+    \pgf@x=-0.5\pgf@x
+    \pgf@y=-0.5\pgf@y
+  }
+  % Inherit from rectangle
+  \inheritanchorborder[from=rectangle]
+
+  % Define same anchor a normal rectangle has
+  \anchor{center}{\pgfpointorigin}
+  \anchor{north}{\northeast \pgf@x=0pt}
+  \anchor{east}{\northeast \pgf@y=0pt}
+  \anchor{south}{\southwest \pgf@x=0pt}
+  \anchor{west}{\southwest \pgf@y=0pt}
+  \anchor{north east}{\northeast}
+  \anchor{north west}{\northeast \pgf@x=-\pgf@x}
+  \anchor{south west}{\southwest}
+  \anchor{south east}{\southwest \pgf@x=-\pgf@x}
+  \anchor{text}{
+    \pgfpointorigin
+    \advance\pgf@x by -.5\wd\pgfnodeparttextbox%
+    \advance\pgf@y by -.5\ht\pgfnodeparttextbox%
+    \advance\pgf@y by +.5\dp\pgfnodeparttextbox%
+  }
+
+  % Define anchors for signal ports
+  \anchor{D}{
+    \pgf@process{\northeast}%
+    \pgf@x=-1\pgf@x%
+    \pgf@y=.5\pgf@y%
+  }
+  \anchor{CLK}{
+    \pgf@process{\northeast}%
+    \pgf@x=-1\pgf@x%
+    \pgf@y=-.5\pgf@y%
+  }
+  \anchor{Q}{
+    \pgf@process{\northeast}%
+    \pgf@y=0pt%
+  }
+  \anchor{R}{
+    \pgf@process{\northeast}%
+    \pgf@x=0pt%
+  }
+  % Draw the rectangle box and the port labels
+  \backgroundpath{
+    % Rectangle box
+    \pgfpathrectanglecorners{\southwest}{\northeast}
+    % Angle (>) for clock input
+    \pgf@anchor@dffne@CLK
+    \pgf@xa=\pgf@x \pgf@ya=\pgf@y
+    \pgf@xb=\pgf@x \pgf@yb=\pgf@y
+    \pgf@xc=\pgf@x \pgf@yc=\pgf@y
+    \pgfmathsetlength\pgf@x{1.6ex} % size depends on font size
+    \advance\pgf@ya by \pgf@x
+    \advance\pgf@xb by \pgf@x
+    \advance\pgf@yc by -\pgf@x
+    \pgfpathmoveto{\pgfpoint{\pgf@xa}{\pgf@ya}}
+    \pgfpathlineto{\pgfpoint{\pgf@xb}{\pgf@yb}}
+    \pgfpathlineto{\pgfpoint{\pgf@xc}{\pgf@yc}}
+    \pgfclosepath
+
+    % Draw port labels
+    \begingroup
+    \tikzset{flip flop/port labels} % Use font from this style
+    \tikz@textfont
+
+    \pgf@anchor@dffne@D
+    \pgftext[left,base,at={\pgfpoint{\pgf@x}{\pgf@y}},x=\pgfshapeinnerxsep]{\raisebox{-0.75ex}{D}}
+
+    \pgf@anchor@dffne@Q
+    \pgftext[right,base,at={\pgfpoint{\pgf@x}{\pgf@y}},x=-\pgfshapeinnerxsep]{\raisebox{-.75ex}{Q}}
+
+    \pgf@anchor@dffne@R
+    \pgftext[top,at={\pgfpoint{\pgf@x}{\pgf@y}},y=-\pgfshapeinnerysep]{R}
+    \endgroup
+  }
+}
+
+% Key to add font macros to the current font
+%\tikzset{add font/.code={\expandafter\def\expandafter\tikz@textfont\expandafter{\tikz@textfont#1}}} 
+
+% Define default style for this node
+%\tikzset{flip flop/port labels/.style={font=\rmfamily\scriptsize}}
+\tikzset{every dffne node/.style={draw,minimum width=2cm,minimum 
+height=2cm,inner sep=1mm,outer sep=0pt,cap=round,add 
+font=\rmfamily}}
+
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+\begin{tikzpicture}[circuit logic US,%
+        dot/.style    = {anchor=base,fill,circle,inner sep=1.3pt}]
+
+\node at (-2,1) (e1) {$\texttt{enable}_1$};
+\node at (-2,-1) (en) {$\texttt{enable}_N$};
+\node[or gate,inputs=nn] at (1,0) (or_enb) {};
+\node[dot] at (2,0) (aux_enb_in) {};
+\node[dot] at (0,1) (aux_e1) {};
+\node[dot] at (-0.5,-1) (aux_en) {};
+\node[draw,rectangle,minimum width=3cm,minimum height=3cm] at (5,0.75) (f) {\textsc{Func}};
+\node[and gate,inputs=nn] at (3,-2) (and1t) {};
+\node[and gate,inputs=in] at (3,-3) (and1f) {};
+\node[and gate,inputs=nn] at (3,-7) (andnt) {};
+\node[and gate,inputs=in] at (3,-8) (andnf) {};
+\node[dot] at (2,-1.9) (aux1_enb) {};
+\node[dot] at (2,-2.9) (aux2_enb) {};
+\node[dot] at (2,-6.9) (aux3_enb) {};
+\node[or gate,inputs=nn] at (4.5,-2.5) (or1) {};
+\node[or gate,inputs=nn] at (4.5,-7.5) (orn) {};
+\node[shape=dffne] at (6.5,-3) (rege1) {$\textsc{Enb}_1$};
+\node[shape=dffne] at (6.5,-8) (regen) {$\textsc{Enb}_N$};
+\node[dot] at (8,-3) (aux1_out) {};
+\node[dot] at (8,-8) (aux2_out) {};
+\node[and gate] at (9.5,-2.5) (and1_out) {};
+\node[and gate] at (9,-7.5) (andn_out) {};
+\node[dot] at (8.5,0) (aux_out) {};
+\node at (11,-2.5) (e1_) {$\texttt{enable}_1$};
+\node at (11,-7.5) (en_) {$\texttt{enable}_N$};
+
+\draw (e1.east) -- (0.5,1) |- (or_enb.input 1);
+\draw (en.east) -- (0.5,-1) |- (or_enb.input 2);
+\draw (or_enb.output) -- (aux_enb_in) -- ($ (f.west) + (0,-0.75) $); 
+\draw (aux_e1) |- (and1t.input 2);
+\draw (aux_en) |- (andnt.input 2);
+\draw (aux1_enb) -- (and1t.input 1);
+\draw (aux2_enb) -- (and1f.input 1);
+\draw (aux3_enb) -- (andnt.input 1);
+\draw (aux_enb_in) |- (andnf.input 1);
+\draw (and1t.output) -- ++(0.5,0) |- (or1.input 1);
+\draw (and1f.output) -- ++(0.5,0) |- (or1.input 2);
+\draw (andnt.output) -- ++(0.5,0) |- (orn.input 1);
+\draw (andnf.output) -- ++(0.5,0) |- (orn.input 2);
+\draw (or1.output) -- (rege1.D);
+\draw (orn.output) -- (regen.D);
+\draw (aux1_out) -- ++(0,-1.5) -- ++(-5.5,0) |- (and1f.input 2);
+\draw (aux2_out) -- ++(0,-1.5) -- ++(-5.5,0) |- (andnf.input 2);
+\draw (rege1.Q) -- ++(1.5,0) |- (and1_out.input 2);
+\draw (regen.Q) -- ++(1,0) |- (andn_out.input 2);
+\draw (6.5,0) -- ++(2.5,0) |- (and1_out.input 1);
+\draw (aux_out) |- (andn_out.input 1);
+\draw (and1_out.output) -- (e1_.west);
+\draw (andn_out.output) -- (en_.west);
+
+\end{tikzpicture}
+
+\end{document}
+
+
+

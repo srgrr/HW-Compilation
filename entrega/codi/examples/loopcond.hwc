@@ -1,0 +1,20 @@
+VECTOR_SIZE 64
+
+
+FUNC main
+    VAR i RAV
+
+    i = 0;
+    WHILE i < 10 DO
+        i = i + 1;
+        IF i & 0b00000001 THEN
+            main = i;
+        ELSE
+            main = i >> 1;
+        FI;
+    ELIHW;
+    main = 0;
+
+CNUF
+
+

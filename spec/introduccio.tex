@@ -1,0 +1,32 @@
+
+\section{Introducció}
+
+Tradicionalment, aprenem de forma independent i aïllada el funcionament del 
+\textit{hardware} dels computadors i la programació mitjançant 
+\textit{software}. Malgrat les capes d'abstracció que afegim entremig, però, 
+és clar que és tècnicament possible, per a cada programa que puguem expressar 
+mitjançant qualsevol llenguatge de programació, dissenyar un circuit lògic que 
+l'executi.
+
+Aquest projecte té com a objectiu fonamental mostrar que, a més, es pot fer 
+aquest pas d'un programa expressat en un llenguatge de programació 
+convencional a un circuit digital equivalent de forma automàtica. 
+
+A tal efecte, dissenyem un llenguatge de programació molt simple de capacitats 
+reduïdes però amb algunes de les estructures de seqüenciació més habituals i 
+construirem un traductor que, a partir dels programes especificats en aquest 
+llenguatge, generi automàticament els circuits corresponents. En particular, 
+aquest llenguatge de programació tractarà amb vectors de bits d'una mida 
+fixada per a cada programa (que, llavors, el programador pot interpretar com a 
+nombres enters, per exemple) i disposarà de sentències condicionals i 
+repetitives, així com d'un sistema de funcions i crides a aquestes. Una de 
+les principals limitacions d'aquest llenguatge, però, serà la falta de memòria 
+(cosa que, d'altra banda, facilitarà la simulació dels programes en circuits). 
+
+Tanmateix, l'interès d'aquest projecte no deixa de ser merament acadèmic, ja 
+que els circuits generats no són en general òptims (ni pretenen ser-ho) i, per 
+tant, amb programes d'una complexitat mitjana ja és possible tenir una 
+explosió de portes lògiques que en faci infactible la implementació a la 
+pràctica. Per aquest motiu, un llenguatge limitat com el descrit és suficient 
+per exemplificar la traducció automàtica de programes a circuits.
+

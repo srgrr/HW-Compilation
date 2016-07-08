@@ -1,0 +1,384 @@
+\documentclass[a4paper,12pt,catalan]{article}
+
+\usepackage{mathpazo}
+\usepackage[scaled=1.03,varqu]{zi4}
+%\usepackage[scaled=0.92]{luximono}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+
+% Format
+\usepackage{geometry}
+\geometry{verbose,tmargin=3cm,bmargin=3cm,lmargin=3cm,rmargin=3cm}
+\usepackage{setspace}
+\onehalfspacing
+
+% Referències
+\usepackage[unicode=true,
+  bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+  breaklinks=false,pdfborder={0 0 0},backref=false,colorlinks=false]
+    {hyperref}
+\hypersetup{pdfauthor={Gispert Sánchez, Francesc; Rodríguez Guasch, Sergio}}
+\renewcommand{\figureautorefname}{Figura}
+\renewcommand{\sectionautorefname}{Secció}
+\renewcommand{\subsectionautorefname}{Secció}
+\usepackage[style=numeric,sorting=nty,date=year,backend=biber]{biblatex}
+\bibliography{bibliografia-informe}
+\DeclareNameAlias{default}{last-first}
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
+
+% Gràfics
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.10}
+\usepackage{standalone}
+\usepackage{tikz}
+\usetikzlibrary{circuits.logic.US}
+\makeatletter
+% Data Flip Flip (DFF) shape
+\pgfdeclareshape{dff}{
+  % The 'minimum width' and 'minimum height' keys, not the content, determine
+  % the size
+  \savedanchor\northeast{%
+    \pgfmathsetlength\pgf@x{\pgfshapeminwidth}%
+    \pgfmathsetlength\pgf@y{\pgfshapeminheight}%
+    \pgf@x=0.5\pgf@x
+    \pgf@y=0.5\pgf@y
+  }
+  % This is redundant, but makes some things easier:
+  \savedanchor\southwest{%
+    \pgfmathsetlength\pgf@x{\pgfshapeminwidth}%
+    \pgfmathsetlength\pgf@y{\pgfshapeminheight}%
+    \pgf@x=-0.5\pgf@x
+    \pgf@y=-0.5\pgf@y
+  }
+  % Inherit from rectangle
+  \inheritanchorborder[from=rectangle]
+
+  % Define same anchor a normal rectangle has
+  \anchor{center}{\pgfpointorigin}
+  \anchor{north}{\northeast \pgf@x=0pt}
+  \anchor{east}{\northeast \pgf@y=0pt}
+  \anchor{south}{\southwest \pgf@x=0pt}
+  \anchor{west}{\southwest \pgf@y=0pt}
+  \anchor{north east}{\northeast}
+  \anchor{north west}{\northeast \pgf@x=-\pgf@x}
+  \anchor{south west}{\southwest}
+  \anchor{south east}{\southwest \pgf@x=-\pgf@x}
+  \anchor{text}{
+    \pgfpointorigin
+    \advance\pgf@x by -.5\wd\pgfnodeparttextbox%
+    \advance\pgf@y by -.5\ht\pgfnodeparttextbox%
+    \advance\pgf@y by +.5\dp\pgfnodeparttextbox%
+  }
+
+  % Define anchors for signal ports
+  \anchor{D}{
+    \pgf@process{\northeast}%
+    \pgf@x=-1\pgf@x%
+    \pgf@y=.5\pgf@y%
+  }
+  \anchor{CLK}{
+    \pgf@process{\northeast}%
+    \pgf@x=-1\pgf@x%
+    \pgf@y=-.66666\pgf@y%
+  }
+  \anchor{Q}{
+    \pgf@process{\northeast}%
+    \pgf@y=0pt%
+  }
+  \anchor{R}{
+    \pgf@process{\northeast}%
+    \pgf@x=0pt%
+  }
+  \anchor{E}{
+    \pgf@process{\northeast}%
+    \pgf@x=0pt%
+    \pgf@y=-\pgf@y%
+  }
+  % Draw the rectangle box and the port labels
+  \backgroundpath{
+    % Rectangle box
+    \pgfpathrectanglecorners{\southwest}{\northeast}
+    % Angle (>) for clock input
+    \pgf@anchor@dff@CLK
+    \pgf@xa=\pgf@x \pgf@ya=\pgf@y
+    \pgf@xb=\pgf@x \pgf@yb=\pgf@y
+    \pgf@xc=\pgf@x \pgf@yc=\pgf@y
+    \pgfmathsetlength\pgf@x{1.6ex} % size depends on font size
+    \advance\pgf@ya by \pgf@x
+    \advance\pgf@xb by \pgf@x
+    \advance\pgf@yc by -\pgf@x
+    \pgfpathmoveto{\pgfpoint{\pgf@xa}{\pgf@ya}}
+    \pgfpathlineto{\pgfpoint{\pgf@xb}{\pgf@yb}}
+    \pgfpathlineto{\pgfpoint{\pgf@xc}{\pgf@yc}}
+    \pgfclosepath
+
+    % Draw port labels
+    \begingroup
+    \tikzset{flip flop/port labels} % Use font from this style
+    \tikz@textfont
+
+    \pgf@anchor@dff@D
+    \pgftext[left,base,at={\pgfpoint{\pgf@x}{\pgf@y}},x=\pgfshapeinnerxsep]{\raisebox{-0.75ex}{D}}
+
+    \pgf@anchor@dff@Q
+    \pgftext[right,base,at={\pgfpoint{\pgf@x}{\pgf@y}},x=-\pgfshapeinnerxsep]{\raisebox{-.75ex}{Q}}
+
+    \pgf@anchor@dff@R
+    \pgftext[top,at={\pgfpoint{\pgf@x}{\pgf@y}},y=-\pgfshapeinnerysep]{R}
+
+    \pgf@anchor@dff@E
+    \pgftext[bottom,at={\pgfpoint{\pgf@x}{\pgf@y}},y=\pgfshapeinnerysep]{E}
+    \endgroup
+  }
+}
+% Key to add font macros to the current font
+\tikzset{add font/.code={\expandafter\def\expandafter\tikz@textfont\expandafter{\tikz@textfont#1}}} 
+% Define default style for this node
+\tikzset{flip flop/port labels/.style={font=\rmfamily\scriptsize}}
+\tikzset{every dff node/.style={draw,minimum width=2cm,minimum 
+height=2.828427125cm,inner sep=1mm,outer sep=0pt,cap=round,add 
+font=\rmfamily}}
+% Data Flip Flip (DFF) shape
+\pgfdeclareshape{dffne}{
+  % The 'minimum width' and 'minimum height' keys, not the content, determine
+  % the size
+  \savedanchor\northeast{%
+    \pgfmathsetlength\pgf@x{\pgfshapeminwidth}%
+    \pgfmathsetlength\pgf@y{\pgfshapeminheight}%
+    \pgf@x=0.5\pgf@x
+    \pgf@y=0.5\pgf@y
+  }
+  % This is redundant, but makes some things easier:
+  \savedanchor\southwest{%
+    \pgfmathsetlength\pgf@x{\pgfshapeminwidth}%
+    \pgfmathsetlength\pgf@y{\pgfshapeminheight}%
+    \pgf@x=-0.5\pgf@x
+    \pgf@y=-0.5\pgf@y
+  }
+  % Inherit from rectangle
+  \inheritanchorborder[from=rectangle]
+
+  % Define same anchor a normal rectangle has
+  \anchor{center}{\pgfpointorigin}
+  \anchor{north}{\northeast \pgf@x=0pt}
+  \anchor{east}{\northeast \pgf@y=0pt}
+  \anchor{south}{\southwest \pgf@x=0pt}
+  \anchor{west}{\southwest \pgf@y=0pt}
+  \anchor{north east}{\northeast}
+  \anchor{north west}{\northeast \pgf@x=-\pgf@x}
+  \anchor{south west}{\southwest}
+  \anchor{south east}{\southwest \pgf@x=-\pgf@x}
+  \anchor{text}{
+    \pgfpointorigin
+    \advance\pgf@x by -.5\wd\pgfnodeparttextbox%
+    \advance\pgf@y by -.5\ht\pgfnodeparttextbox%
+    \advance\pgf@y by +.5\dp\pgfnodeparttextbox%
+  }
+
+  % Define anchors for signal ports
+  \anchor{D}{
+    \pgf@process{\northeast}%
+    \pgf@x=-1\pgf@x%
+    \pgf@y=.5\pgf@y%
+  }
+  \anchor{CLK}{
+    \pgf@process{\northeast}%
+    \pgf@x=-1\pgf@x%
+    \pgf@y=-.5\pgf@y%
+  }
+  \anchor{Q}{
+    \pgf@process{\northeast}%
+    \pgf@y=0pt%
+  }
+  \anchor{R}{
+    \pgf@process{\northeast}%
+    \pgf@x=0pt%
+  }
+  % Draw the rectangle box and the port labels
+  \backgroundpath{
+    % Rectangle box
+    \pgfpathrectanglecorners{\southwest}{\northeast}
+    % Angle (>) for clock input
+    \pgf@anchor@dffne@CLK
+    \pgf@xa=\pgf@x \pgf@ya=\pgf@y
+    \pgf@xb=\pgf@x \pgf@yb=\pgf@y
+    \pgf@xc=\pgf@x \pgf@yc=\pgf@y
+    \pgfmathsetlength\pgf@x{1.6ex} % size depends on font size
+    \advance\pgf@ya by \pgf@x
+    \advance\pgf@xb by \pgf@x
+    \advance\pgf@yc by -\pgf@x
+    \pgfpathmoveto{\pgfpoint{\pgf@xa}{\pgf@ya}}
+    \pgfpathlineto{\pgfpoint{\pgf@xb}{\pgf@yb}}
+    \pgfpathlineto{\pgfpoint{\pgf@xc}{\pgf@yc}}
+    \pgfclosepath
+
+    % Draw port labels
+    \begingroup
+    \tikzset{flip flop/port labels} % Use font from this style
+    \tikz@textfont
+
+    \pgf@anchor@dffne@D
+    \pgftext[left,base,at={\pgfpoint{\pgf@x}{\pgf@y}},x=\pgfshapeinnerxsep]{\raisebox{-0.75ex}{D}}
+
+    \pgf@anchor@dffne@Q
+    \pgftext[right,base,at={\pgfpoint{\pgf@x}{\pgf@y}},x=-\pgfshapeinnerxsep]{\raisebox{-.75ex}{Q}}
+
+    \pgf@anchor@dffne@R
+    \pgftext[top,at={\pgfpoint{\pgf@x}{\pgf@y}},y=-\pgfshapeinnerysep]{R}
+    \endgroup
+  }
+}
+% Define default style for this node
+%\tikzset{flip flop/port labels/.style={font=\rmfamily\scriptsize}}
+\tikzset{every dffne node/.style={draw,minimum width=2cm,minimum 
+height=2cm,inner sep=1mm,outer sep=0pt,cap=round,add 
+font=\rmfamily}}
+\makeatother
+
+
+% Matemàtiques 
+\usepackage{mathtools}
+
+% Codi
+\usepackage{xcolor}
+\usepackage{listings}
+\lstloadlanguages{Java}
+\lstset{%
+  % backgroundcolor=\color{yellow!10},%
+  aboveskip=20pt,%
+  % belowskip=20pt,%
+  captionpos=b,%
+  frame=single,%
+  basicstyle=\small\ttfamily,%
+  numbers=left,%
+  numberstyle=\scriptsize,%
+  stepnumber=1,%
+  numbersep=5pt,%
+  extendedchars=true,%
+  showspaces=false,%
+  showtabs=false,%
+  breaklines=true,%
+  columns=fullflexible,%
+  escapeinside={(*@}{@*)}%
+}
+\lstdefinestyle{antlr-gram}{%
+  moredelim=[s][\color{green!70!black}]{'}{'},%
+  moredelim=*[s][\color{black}]{\{}{\}},%
+  moredelim=*[s][\color{black}]{[}{]},%
+  commentstyle={\color{gray}},%
+  morecomment=[l]{//},%
+  morecomment=[s]{/*}{*/},%
+  keywordstyle={\color{black}},%
+  emph={grammar,hw_compilation,options,tokens,@header,@lexer,header},%
+  emphstyle={\color{black}\bfseries},%
+  identifierstyle=\idstyle%
+}
+\lstdefinestyle{hw-comp}{%
+  morekeywords={VECTOR_SIZE,IF,THEN,ELSE,FI,WHILE,DO,ELIHW,FUNC,CNUF,ARG,GRA,VAR,RAV},%
+  keywordstyle=\bfseries\color{blue},%
+  alsoletter={0,1,2,3,4,5,6,7,8,9},
+  emph={0,1,2,3,4,5,6,7,8,9,0x,0b},%
+  emphstyle={\color{red}},%
+  identifierstyle=\numstyle%
+}
+\lstdefinestyle{java}{%
+  language=Java,%
+  keywordstyle=\bfseries\color{blue},%
+  commentstyle=\color{gray},%
+  stringstyle=\color{red},%
+  emphstyle=\bfseries\color{violet}%
+}
+\makeatletter
+\newcommand*\idstyle{%
+  \expandafter\id@style\the\lst@token\relax%
+}
+\def\id@style#1#2\relax{%
+  \ifcat#1\relax\else%
+    \ifnum`#1=\uccode`#1%
+      \color{blue}%
+    \else%
+      \ifnum`#1=\lccode`#1%
+        \color{violet}%
+      \fi%
+    \fi%
+  \fi%
+}
+\newcommand*\numstyle{%
+  \expandafter\num@style\the\lst@token\relax%
+}
+\def\rednum#1{%
+  \if!\ifnum9<1#1!\else_\fi
+    \color{red}\else\relax\fi
+}
+\def\num@style#1#2\relax{%
+  \ifcat#1\relax\else%
+    \rednum#1%
+  \fi%
+}
+\makeatother
+\renewcommand*\lstlistingname{Fragment de codi}
+
+% Altres paquets
+\usepackage[binary-units]{siunitx}  % Unitats del SI
+\usepackage{mleftright}  % Arregla problema d'espais abans de parèntesis
+\let\left\mleft
+\let\right\mright
+
+
+\begin{document}
+
+\title{Compiladors\\ Documentació de HW--Compilation}  
+
+\author{Gispert Sánchez, Francesc-Xavier \and Rodríguez Guasch, Sergio}
+
+\maketitle
+
+\noindent \rule[0.5ex]{1\columnwidth}{1pt}
+
+\tableofcontents
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{introduccio}
+
+\clearpage
+
+\input{llenguatge}
+
+\clearpage
+
+\input{moduls}
+
+\clearpage
+
+\input{graf}
+
+\clearpage
+
+\input{traduccio}
+
+\clearpage
+
+\input{grup}
+
+\clearpage
+
+\input{gramatica}
+
+\clearpage
+
+\input{exemples}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\nocite{*}
+\printbibliography[heading=bibintoc]
+
+\end{document}

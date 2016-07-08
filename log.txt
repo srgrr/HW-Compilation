@@ -1,0 +1,1431 @@
+getFunctionNames
+traverseTree
+{encrypt_int32={}, decrypt_int32={}, main={w=0, v=0, r=0, kk=0, k=0, main=0}}
+[k, kk, r, v, w]
+traverseInstructionList
+main[k, kk, r, v, w]INSTR_LIST
+traverseInstruction
+{encrypt_int32={}, decrypt_int32={}, main={w=0, v=0, r=0, kk=0, k=0, main=0}}
+w
+traverseExpression
+traverseExpression
+traverseExpression
+traverseExpression
+traverseTree
+{encrypt_int32={v1=0, k3=0, v0=0, d=0, kk=0, k=0, k0=0, k1=0, i=0, k2=0, v=0, s=0, encrypt_int32=0}, decrypt_int32={}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+[d, i, k, k0, k1, k2, k3, kk, s, v, v0, v1]
+traverseInstructionList
+encrypt_int32[d, i, k, k0, k1, k2, k3, kk, s, v, v0, v1]INSTR_LIST
+traverseInstruction
+{encrypt_int32={v1=0, k3=0, v0=0, d=0, kk=0, k=0, k0=0, k1=0, i=0, k2=0, v=0, s=0, encrypt_int32=0}, decrypt_int32={}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+v0
+traverseExpression
+traverseExpression
+traverseExpression
+traverseInstruction
+{encrypt_int32={v1=0, k3=0, v0=1, d=0, kk=0, k=0, k0=0, k1=0, i=0, k2=0, v=0, s=0, encrypt_int32=0}, decrypt_int32={}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+v1
+traverseExpression
+traverseExpression
+traverseExpression
+traverseExpression
+traverseExpression
+traverseInstruction
+{encrypt_int32={v1=1, k3=0, v0=1, d=0, kk=0, k=0, k0=0, k1=0, i=0, k2=0, v=0, s=0, encrypt_int32=0}, decrypt_int32={}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+k0
+traverseExpression
+traverseExpression
+traverseExpression
+traverseInstruction
+{encrypt_int32={v1=1, k3=0, v0=1, d=0, kk=0, k=0, k0=1, k1=0, i=0, k2=0, v=0, s=0, encrypt_int32=0}, decrypt_int32={}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+k1
+traverseExpression
+traverseExpression
+traverseExpression
+traverseExpression
+traverseExpression
+traverseInstruction
+{encrypt_int32={v1=1, k3=0, v0=1, d=0, kk=0, k=0, k0=1, k1=1, i=0, k2=0, v=0, s=0, encrypt_int32=0}, decrypt_int32={}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+k2
+traverseExpression
+traverseExpression
+traverseExpression
+traverseInstruction
+{encrypt_int32={v1=1, k3=0, v0=1, d=0, kk=0, k=0, k0=1, k1=1, i=0, k2=1, v=0, s=0, encrypt_int32=0}, decrypt_int32={}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+k3
+traverseExpression
+traverseExpression
+traverseExpression
+traverseExpression
+traverseExpression
+traverseInstruction
+{encrypt_int32={v1=1, k3=1, v0=1, d=0, kk=0, k=0, k0=1, k1=1, i=0, k2=1, v=0, s=0, encrypt_int32=0}, decrypt_int32={}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+d
+traverseExpression
+traverseInstruction
+{encrypt_int32={v1=1, k3=1, v0=1, d=1, kk=0, k=0, k0=1, k1=1, i=0, k2=1, v=0, s=0, encrypt_int32=0}, decrypt_int32={}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+s
+traverseExpression
+traverseInstruction
+{encrypt_int32={v1=1, k3=1, v0=1, d=1, kk=0, k=0, k0=1, k1=1, i=0, k2=1, v=0, s=1, encrypt_int32=0}, decrypt_int32={}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+i
+traverseExpression
+traverseInstruction
+traverseExpression
+traverseExpression
+traverseExpression
+traverseInstructionList
+encrypt_int32[d, i, k, k0, k1, k2, k3, kk, s, v, v0, v1]INSTR_LIST
+traverseInstruction
+{encrypt_int32={v1=1, k3=1, v0=1, d=1, kk=0, k=0, k0=1, k1=1, i=1, k2=1, v=0, s=1, encrypt_int32=0}, decrypt_int32={}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+s
+traverseExpression
+traverseExpression
+traverseExpression
+traverseInstruction
+{encrypt_int32={v1=1, k3=1, v0=1, d=1, kk=0, k=0, k0=1, k1=1, i=1, k2=1, v=0, s=2, encrypt_int32=0}, decrypt_int32={}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+v0
+traverseExpression
+traverseExpression
+traverseExpression
+traverseInstruction
+{encrypt_int32={v1=1, k3=1, v0=2, d=1, kk=0, k=0, k0=1, k1=1, i=1, k2=1, v=0, s=2, encrypt_int32=0}, decrypt_int32={}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+v1
+traverseExpression
+traverseExpression
+traverseExpression
+traverseInstruction
+{encrypt_int32={v1=2, k3=1, v0=2, d=1, kk=0, k=0, k0=1, k1=1, i=1, k2=1, v=0, s=2, encrypt_int32=0}, decrypt_int32={}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+i
+traverseExpression
+traverseExpression
+traverseExpression
+traverseInstruction
+{encrypt_int32={v1=2, k3=1, v0=2, d=1, kk=0, k=0, k0=1, k1=1, i=2, k2=1, v=0, s=2, encrypt_int32=0}, decrypt_int32={}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+encrypt_int32
+traverseExpression
+traverseExpression
+traverseExpression
+traverseExpression
+traverseExpression
+traverseExpression
+traverseExpression
+traverseExpression
+traverseExpression
+traverseInstruction
+traverseExpression
+traverseExpression
+traverseExpression
+traverseExpression
+traverseExpression
+traverseTree
+{encrypt_int32={v1=2, k3=1, v0=2, d=1, kk=0, k=0, k0=1, k1=1, i=2, k2=1, v=0, s=2, encrypt_int32=1}, decrypt_int32={v1=0, k3=0, v0=0, d=0, kk=0, k=0, k0=0, k1=0, i=0, k2=0, v=0, s=0, decrypt_int32=0}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+[d, i, k, k0, k1, k2, k3, kk, s, v, v0, v1]
+traverseInstructionList
+decrypt_int32[d, i, k, k0, k1, k2, k3, kk, s, v, v0, v1]INSTR_LIST
+traverseInstruction
+{encrypt_int32={v1=2, k3=1, v0=2, d=1, kk=0, k=0, k0=1, k1=1, i=2, k2=1, v=0, s=2, encrypt_int32=1}, decrypt_int32={v1=0, k3=0, v0=0, d=0, kk=0, k=0, k0=0, k1=0, i=0, k2=0, v=0, s=0, decrypt_int32=0}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+v0
+traverseExpression
+traverseExpression
+traverseExpression
+traverseInstruction
+{encrypt_int32={v1=2, k3=1, v0=2, d=1, kk=0, k=0, k0=1, k1=1, i=2, k2=1, v=0, s=2, encrypt_int32=1}, decrypt_int32={v1=0, k3=0, v0=1, d=0, kk=0, k=0, k0=0, k1=0, i=0, k2=0, v=0, s=0, decrypt_int32=0}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+v1
+traverseExpression
+traverseExpression
+traverseExpression
+traverseExpression
+traverseExpression
+traverseInstruction
+{encrypt_int32={v1=2, k3=1, v0=2, d=1, kk=0, k=0, k0=1, k1=1, i=2, k2=1, v=0, s=2, encrypt_int32=1}, decrypt_int32={v1=1, k3=0, v0=1, d=0, kk=0, k=0, k0=0, k1=0, i=0, k2=0, v=0, s=0, decrypt_int32=0}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+k0
+traverseExpression
+traverseExpression
+traverseExpression
+traverseInstruction
+{encrypt_int32={v1=2, k3=1, v0=2, d=1, kk=0, k=0, k0=1, k1=1, i=2, k2=1, v=0, s=2, encrypt_int32=1}, decrypt_int32={v1=1, k3=0, v0=1, d=0, kk=0, k=0, k0=1, k1=0, i=0, k2=0, v=0, s=0, decrypt_int32=0}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+k1
+traverseExpression
+traverseExpression
+traverseExpression
+traverseExpression
+traverseExpression
+traverseInstruction
+{encrypt_int32={v1=2, k3=1, v0=2, d=1, kk=0, k=0, k0=1, k1=1, i=2, k2=1, v=0, s=2, encrypt_int32=1}, decrypt_int32={v1=1, k3=0, v0=1, d=0, kk=0, k=0, k0=1, k1=1, i=0, k2=0, v=0, s=0, decrypt_int32=0}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+k2
+traverseExpression
+traverseExpression
+traverseExpression
+traverseInstruction
+{encrypt_int32={v1=2, k3=1, v0=2, d=1, kk=0, k=0, k0=1, k1=1, i=2, k2=1, v=0, s=2, encrypt_int32=1}, decrypt_int32={v1=1, k3=0, v0=1, d=0, kk=0, k=0, k0=1, k1=1, i=0, k2=1, v=0, s=0, decrypt_int32=0}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+k3
+traverseExpression
+traverseExpression
+traverseExpression
+traverseExpression
+traverseExpression
+traverseInstruction
+{encrypt_int32={v1=2, k3=1, v0=2, d=1, kk=0, k=0, k0=1, k1=1, i=2, k2=1, v=0, s=2, encrypt_int32=1}, decrypt_int32={v1=1, k3=1, v0=1, d=0, kk=0, k=0, k0=1, k1=1, i=0, k2=1, v=0, s=0, decrypt_int32=0}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+d
+traverseExpression
+traverseInstruction
+{encrypt_int32={v1=2, k3=1, v0=2, d=1, kk=0, k=0, k0=1, k1=1, i=2, k2=1, v=0, s=2, encrypt_int32=1}, decrypt_int32={v1=1, k3=1, v0=1, d=1, kk=0, k=0, k0=1, k1=1, i=0, k2=1, v=0, s=0, decrypt_int32=0}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+s
+traverseExpression
+traverseInstruction
+{encrypt_int32={v1=2, k3=1, v0=2, d=1, kk=0, k=0, k0=1, k1=1, i=2, k2=1, v=0, s=2, encrypt_int32=1}, decrypt_int32={v1=1, k3=1, v0=1, d=1, kk=0, k=0, k0=1, k1=1, i=0, k2=1, v=0, s=1, decrypt_int32=0}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+i
+traverseExpression
+traverseInstruction
+traverseExpression
+traverseExpression
+traverseExpression
+traverseInstructionList
+decrypt_int32[d, i, k, k0, k1, k2, k3, kk, s, v, v0, v1]INSTR_LIST
+traverseInstruction
+{encrypt_int32={v1=2, k3=1, v0=2, d=1, kk=0, k=0, k0=1, k1=1, i=2, k2=1, v=0, s=2, encrypt_int32=1}, decrypt_int32={v1=1, k3=1, v0=1, d=1, kk=0, k=0, k0=1, k1=1, i=1, k2=1, v=0, s=1, decrypt_int32=0}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+v1
+traverseExpression
+traverseExpression
+traverseExpression
+traverseInstruction
+{encrypt_int32={v1=2, k3=1, v0=2, d=1, kk=0, k=0, k0=1, k1=1, i=2, k2=1, v=0, s=2, encrypt_int32=1}, decrypt_int32={v1=2, k3=1, v0=1, d=1, kk=0, k=0, k0=1, k1=1, i=1, k2=1, v=0, s=1, decrypt_int32=0}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+v0
+traverseExpression
+traverseExpression
+traverseExpression
+traverseInstruction
+{encrypt_int32={v1=2, k3=1, v0=2, d=1, kk=0, k=0, k0=1, k1=1, i=2, k2=1, v=0, s=2, encrypt_int32=1}, decrypt_int32={v1=2, k3=1, v0=2, d=1, kk=0, k=0, k0=1, k1=1, i=1, k2=1, v=0, s=1, decrypt_int32=0}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+s
+traverseExpression
+traverseExpression
+traverseExpression
+traverseInstruction
+{encrypt_int32={v1=2, k3=1, v0=2, d=1, kk=0, k=0, k0=1, k1=1, i=2, k2=1, v=0, s=2, encrypt_int32=1}, decrypt_int32={v1=2, k3=1, v0=2, d=1, kk=0, k=0, k0=1, k1=1, i=1, k2=1, v=0, s=2, decrypt_int32=0}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+i
+traverseExpression
+traverseExpression
+traverseExpression
+traverseInstruction
+{encrypt_int32={v1=2, k3=1, v0=2, d=1, kk=0, k=0, k0=1, k1=1, i=2, k2=1, v=0, s=2, encrypt_int32=1}, decrypt_int32={v1=2, k3=1, v0=2, d=1, kk=0, k=0, k0=1, k1=1, i=2, k2=1, v=0, s=2, decrypt_int32=0}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+decrypt_int32
+traverseExpression
+traverseExpression
+traverseExpression
+traverseExpression
+traverseExpression
+traverseExpression
+traverseExpression
+traverseExpression
+traverseExpression
+traverseExpression
+traverseInstructionList
+main[k, kk, r, v, w]INSTR_LIST
+traverseInstruction
+{encrypt_int32={v1=2, k3=1, v0=2, d=1, kk=0, k=0, k0=1, k1=1, i=2, k2=1, v=0, s=2, encrypt_int32=1}, decrypt_int32={v1=2, k3=1, v0=2, d=1, kk=0, k=0, k0=1, k1=1, i=2, k2=1, v=0, s=2, decrypt_int32=1}, main={w=1, v=0, r=0, kk=0, k=0, main=0}}
+r
+traverseExpression
+traverseInstructionList
+main[k, kk, r, v, w]INSTR_LIST
+traverseInstruction
+{encrypt_int32={v1=2, k3=1, v0=2, d=1, kk=0, k=0, k0=1, k1=1, i=2, k2=1, v=0, s=2, encrypt_int32=1}, decrypt_int32={v1=2, k3=1, v0=2, d=1, kk=0, k=0, k0=1, k1=1, i=2, k2=1, v=0, s=2, decrypt_int32=1}, main={w=1, v=0, r=1, kk=0, k=0, main=0}}
+r
+traverseExpression
+traverseInstruction
+{encrypt_int32={v1=2, k3=1, v0=2, d=1, kk=0, k=0, k0=1, k1=1, i=2, k2=1, v=0, s=2, encrypt_int32=1}, decrypt_int32={v1=2, k3=1, v0=2, d=1, kk=0, k=0, k0=1, k1=1, i=2, k2=1, v=0, s=2, decrypt_int32=1}, main={w=1, v=0, r=2, kk=0, k=0, main=0}}
+main
+traverseExpression
+checkRecursivity
+fillSCCStack
+fillSCCStack
+encrypt_int32
+fillSCCStack
+decrypt_int32
+main
+[encrypt_int32, decrypt_int32, main]
+[encrypt_int32, decrypt_int32, main]
+Traversing with root main
+traverseSCC
+[main]
+[encrypt_int32, decrypt_int32]
+Traversing with root decrypt_int32
+traverseSCC
+traverseSCC
+[decrypt_int32]
+[encrypt_int32]
+Traversing with root encrypt_int32
+traverseSCC
+traverseSCC
+[encrypt_int32]
+{encrypt_int32=1, decrypt_int32=1, main=0}
+{encrypt_int32={v1=2, k3=1, v0=2, d=1, kk=0, k=0, k0=1, k1=1, i=2, k2=1, v=0, s=2, encrypt_int32=1}, decrypt_int32={v1=2, k3=1, v0=2, d=1, kk=0, k=0, k0=1, k1=1, i=2, k2=1, v=0, s=2, decrypt_int32=1}, main={w=1, v=0, r=2, kk=0, k=0, main=1}}
+Node type:39
+Node content:ROOT
+Node func parent:null
+
+Node type:13
+Node content:64
+Node func parent:null
+
+Node type:19
+Node content:FUNC
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:encrypt_int32
+Node func parent:null
+
+Node type:5
+Node content:ARG
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:v
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:k
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:kk
+Node func parent:encrypt_int32
+
+Node type:45
+Node content:VAR
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:s
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:i
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:d
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:v0
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:v1
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:k0
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:k1
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:k2
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:k3
+Node func parent:encrypt_int32
+
+Node type:27
+Node content:INSTR_LIST
+Node func parent:encrypt_int32
+
+Node type:17
+Node content:=
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:v0
+Node func parent:encrypt_int32
+
+Node type:7
+Node content:&
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:v
+Node func parent:encrypt_int32
+
+Node type:24
+Node content:0x00000000FFFFFFFF
+Node func parent:encrypt_int32
+
+Node type:17
+Node content:=
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:v1
+Node func parent:encrypt_int32
+
+Node type:7
+Node content:&
+Node func parent:encrypt_int32
+
+Node type:43
+Node content:>>
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:v
+Node func parent:encrypt_int32
+
+Node type:13
+Node content:32
+Node func parent:encrypt_int32
+
+Node type:24
+Node content:0xFFFFFFFF00000000
+Node func parent:encrypt_int32
+
+Node type:17
+Node content:=
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:k0
+Node func parent:encrypt_int32
+
+Node type:7
+Node content:&
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:kk
+Node func parent:encrypt_int32
+
+Node type:24
+Node content:0x00000000FFFFFFFF
+Node func parent:encrypt_int32
+
+Node type:17
+Node content:=
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:k1
+Node func parent:encrypt_int32
+
+Node type:7
+Node content:&
+Node func parent:encrypt_int32
+
+Node type:43
+Node content:>>
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:kk
+Node func parent:encrypt_int32
+
+Node type:13
+Node content:32
+Node func parent:encrypt_int32
+
+Node type:24
+Node content:0xFFFFFFFF00000000
+Node func parent:encrypt_int32
+
+Node type:17
+Node content:=
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:k2
+Node func parent:encrypt_int32
+
+Node type:7
+Node content:&
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:k
+Node func parent:encrypt_int32
+
+Node type:24
+Node content:0x00000000FFFFFFFF
+Node func parent:encrypt_int32
+
+Node type:17
+Node content:=
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:k3
+Node func parent:encrypt_int32
+
+Node type:7
+Node content:&
+Node func parent:encrypt_int32
+
+Node type:43
+Node content:>>
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:k
+Node func parent:encrypt_int32
+
+Node type:13
+Node content:32
+Node func parent:encrypt_int32
+
+Node type:24
+Node content:0xFFFFFFFF00000000
+Node func parent:encrypt_int32
+
+Node type:17
+Node content:=
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:d
+Node func parent:encrypt_int32
+
+Node type:24
+Node content:0x000000009e3779b9
+Node func parent:encrypt_int32
+
+Node type:17
+Node content:=
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:s
+Node func parent:encrypt_int32
+
+Node type:13
+Node content:0
+Node func parent:encrypt_int32
+
+Node type:17
+Node content:=
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:i
+Node func parent:encrypt_int32
+
+Node type:13
+Node content:0
+Node func parent:encrypt_int32
+
+Node type:47
+Node content:WHILE
+Node func parent:encrypt_int32
+
+Node type:31
+Node content:<
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:i
+Node func parent:encrypt_int32
+
+Node type:13
+Node content:32
+Node func parent:encrypt_int32
+
+Node type:27
+Node content:INSTR_LIST
+Node func parent:encrypt_int32
+
+Node type:17
+Node content:=
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:s
+Node func parent:encrypt_int32
+
+Node type:37
+Node content:+
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:s
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:d
+Node func parent:encrypt_int32
+
+Node type:17
+Node content:=
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:v0
+Node func parent:encrypt_int32
+
+Node type:37
+Node content:+
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:v0
+Node func parent:encrypt_int32
+
+Node type:10
+Node content:^
+Node func parent:encrypt_int32
+
+Node type:10
+Node content:^
+Node func parent:null
+
+Node type:37
+Node content:+
+Node func parent:null
+
+Node type:42
+Node content:<<
+Node func parent:null
+
+Node type:25
+Node content:v1
+Node func parent:null
+
+Node type:13
+Node content:4
+Node func parent:null
+
+Node type:25
+Node content:k0
+Node func parent:null
+
+Node type:37
+Node content:+
+Node func parent:null
+
+Node type:25
+Node content:v1
+Node func parent:null
+
+Node type:25
+Node content:s
+Node func parent:null
+
+Node type:37
+Node content:+
+Node func parent:null
+
+Node type:43
+Node content:>>
+Node func parent:null
+
+Node type:25
+Node content:v1
+Node func parent:null
+
+Node type:13
+Node content:5
+Node func parent:null
+
+Node type:25
+Node content:k1
+Node func parent:null
+
+Node type:17
+Node content:=
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:v1
+Node func parent:encrypt_int32
+
+Node type:37
+Node content:+
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:v1
+Node func parent:encrypt_int32
+
+Node type:10
+Node content:^
+Node func parent:encrypt_int32
+
+Node type:10
+Node content:^
+Node func parent:null
+
+Node type:37
+Node content:+
+Node func parent:null
+
+Node type:42
+Node content:<<
+Node func parent:null
+
+Node type:25
+Node content:v0
+Node func parent:null
+
+Node type:13
+Node content:4
+Node func parent:null
+
+Node type:25
+Node content:k2
+Node func parent:null
+
+Node type:37
+Node content:+
+Node func parent:null
+
+Node type:25
+Node content:v0
+Node func parent:null
+
+Node type:25
+Node content:s
+Node func parent:null
+
+Node type:37
+Node content:+
+Node func parent:null
+
+Node type:43
+Node content:>>
+Node func parent:null
+
+Node type:25
+Node content:v0
+Node func parent:null
+
+Node type:13
+Node content:5
+Node func parent:null
+
+Node type:25
+Node content:k3
+Node func parent:null
+
+Node type:17
+Node content:=
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:i
+Node func parent:encrypt_int32
+
+Node type:37
+Node content:+
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:i
+Node func parent:encrypt_int32
+
+Node type:13
+Node content:1
+Node func parent:encrypt_int32
+
+Node type:17
+Node content:=
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:encrypt_int32
+Node func parent:encrypt_int32
+
+Node type:9
+Node content:|
+Node func parent:encrypt_int32
+
+Node type:7
+Node content:&
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:v0
+Node func parent:encrypt_int32
+
+Node type:24
+Node content:0x00000000FFFFFFFF
+Node func parent:encrypt_int32
+
+Node type:7
+Node content:&
+Node func parent:encrypt_int32
+
+Node type:42
+Node content:<<
+Node func parent:encrypt_int32
+
+Node type:25
+Node content:v1
+Node func parent:encrypt_int32
+
+Node type:13
+Node content:32
+Node func parent:encrypt_int32
+
+Node type:24
+Node content:0xFFFFFFFF00000000
+Node func parent:encrypt_int32
+
+Node type:19
+Node content:FUNC
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:decrypt_int32
+Node func parent:null
+
+Node type:5
+Node content:ARG
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:v
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:k
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:kk
+Node func parent:decrypt_int32
+
+Node type:45
+Node content:VAR
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:s
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:i
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:d
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:v0
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:v1
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:k0
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:k1
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:k2
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:k3
+Node func parent:decrypt_int32
+
+Node type:27
+Node content:INSTR_LIST
+Node func parent:decrypt_int32
+
+Node type:17
+Node content:=
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:v0
+Node func parent:decrypt_int32
+
+Node type:7
+Node content:&
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:v
+Node func parent:decrypt_int32
+
+Node type:24
+Node content:0x00000000FFFFFFFF
+Node func parent:decrypt_int32
+
+Node type:17
+Node content:=
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:v1
+Node func parent:decrypt_int32
+
+Node type:7
+Node content:&
+Node func parent:decrypt_int32
+
+Node type:43
+Node content:>>
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:v
+Node func parent:decrypt_int32
+
+Node type:13
+Node content:32
+Node func parent:decrypt_int32
+
+Node type:24
+Node content:0xFFFFFFFF00000000
+Node func parent:decrypt_int32
+
+Node type:17
+Node content:=
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:k0
+Node func parent:decrypt_int32
+
+Node type:7
+Node content:&
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:kk
+Node func parent:decrypt_int32
+
+Node type:24
+Node content:0x00000000FFFFFFFF
+Node func parent:decrypt_int32
+
+Node type:17
+Node content:=
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:k1
+Node func parent:decrypt_int32
+
+Node type:7
+Node content:&
+Node func parent:decrypt_int32
+
+Node type:43
+Node content:>>
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:kk
+Node func parent:decrypt_int32
+
+Node type:13
+Node content:32
+Node func parent:decrypt_int32
+
+Node type:24
+Node content:0xFFFFFFFF00000000
+Node func parent:decrypt_int32
+
+Node type:17
+Node content:=
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:k2
+Node func parent:decrypt_int32
+
+Node type:7
+Node content:&
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:k
+Node func parent:decrypt_int32
+
+Node type:24
+Node content:0x00000000FFFFFFFF
+Node func parent:decrypt_int32
+
+Node type:17
+Node content:=
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:k3
+Node func parent:decrypt_int32
+
+Node type:7
+Node content:&
+Node func parent:decrypt_int32
+
+Node type:43
+Node content:>>
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:k
+Node func parent:decrypt_int32
+
+Node type:13
+Node content:32
+Node func parent:decrypt_int32
+
+Node type:24
+Node content:0xFFFFFFFF00000000
+Node func parent:decrypt_int32
+
+Node type:17
+Node content:=
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:d
+Node func parent:decrypt_int32
+
+Node type:24
+Node content:0x000000009e3779b9
+Node func parent:decrypt_int32
+
+Node type:17
+Node content:=
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:s
+Node func parent:decrypt_int32
+
+Node type:24
+Node content:0x00000000c6ef3720
+Node func parent:decrypt_int32
+
+Node type:17
+Node content:=
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:i
+Node func parent:decrypt_int32
+
+Node type:13
+Node content:0
+Node func parent:decrypt_int32
+
+Node type:47
+Node content:WHILE
+Node func parent:decrypt_int32
+
+Node type:31
+Node content:<
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:i
+Node func parent:decrypt_int32
+
+Node type:13
+Node content:32
+Node func parent:decrypt_int32
+
+Node type:27
+Node content:INSTR_LIST
+Node func parent:decrypt_int32
+
+Node type:17
+Node content:=
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:v1
+Node func parent:decrypt_int32
+
+Node type:33
+Node content:-
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:v1
+Node func parent:decrypt_int32
+
+Node type:10
+Node content:^
+Node func parent:decrypt_int32
+
+Node type:10
+Node content:^
+Node func parent:null
+
+Node type:37
+Node content:+
+Node func parent:null
+
+Node type:42
+Node content:<<
+Node func parent:null
+
+Node type:25
+Node content:v0
+Node func parent:null
+
+Node type:13
+Node content:4
+Node func parent:null
+
+Node type:25
+Node content:k2
+Node func parent:null
+
+Node type:37
+Node content:+
+Node func parent:null
+
+Node type:25
+Node content:v0
+Node func parent:null
+
+Node type:25
+Node content:s
+Node func parent:null
+
+Node type:37
+Node content:+
+Node func parent:null
+
+Node type:43
+Node content:>>
+Node func parent:null
+
+Node type:25
+Node content:v0
+Node func parent:null
+
+Node type:13
+Node content:5
+Node func parent:null
+
+Node type:25
+Node content:k3
+Node func parent:null
+
+Node type:17
+Node content:=
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:v0
+Node func parent:decrypt_int32
+
+Node type:33
+Node content:-
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:v0
+Node func parent:decrypt_int32
+
+Node type:10
+Node content:^
+Node func parent:decrypt_int32
+
+Node type:10
+Node content:^
+Node func parent:null
+
+Node type:37
+Node content:+
+Node func parent:null
+
+Node type:42
+Node content:<<
+Node func parent:null
+
+Node type:25
+Node content:v1
+Node func parent:null
+
+Node type:13
+Node content:4
+Node func parent:null
+
+Node type:25
+Node content:k0
+Node func parent:null
+
+Node type:37
+Node content:+
+Node func parent:null
+
+Node type:25
+Node content:v1
+Node func parent:null
+
+Node type:25
+Node content:s
+Node func parent:null
+
+Node type:37
+Node content:+
+Node func parent:null
+
+Node type:43
+Node content:>>
+Node func parent:null
+
+Node type:25
+Node content:v1
+Node func parent:null
+
+Node type:13
+Node content:5
+Node func parent:null
+
+Node type:25
+Node content:k1
+Node func parent:null
+
+Node type:17
+Node content:=
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:s
+Node func parent:decrypt_int32
+
+Node type:33
+Node content:-
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:s
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:d
+Node func parent:decrypt_int32
+
+Node type:17
+Node content:=
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:i
+Node func parent:decrypt_int32
+
+Node type:37
+Node content:+
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:i
+Node func parent:decrypt_int32
+
+Node type:13
+Node content:1
+Node func parent:decrypt_int32
+
+Node type:17
+Node content:=
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:decrypt_int32
+Node func parent:decrypt_int32
+
+Node type:9
+Node content:|
+Node func parent:decrypt_int32
+
+Node type:7
+Node content:&
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:v0
+Node func parent:decrypt_int32
+
+Node type:24
+Node content:0x00000000FFFFFFFF
+Node func parent:decrypt_int32
+
+Node type:7
+Node content:&
+Node func parent:decrypt_int32
+
+Node type:42
+Node content:<<
+Node func parent:decrypt_int32
+
+Node type:25
+Node content:v1
+Node func parent:decrypt_int32
+
+Node type:13
+Node content:32
+Node func parent:decrypt_int32
+
+Node type:24
+Node content:0xFFFFFFFF00000000
+Node func parent:decrypt_int32
+
+Node type:19
+Node content:FUNC
+Node func parent:main
+
+Node type:25
+Node content:main
+Node func parent:null
+
+Node type:5
+Node content:ARG
+Node func parent:main
+
+Node type:25
+Node content:v
+Node func parent:main
+
+Node type:25
+Node content:k
+Node func parent:main
+
+Node type:25
+Node content:kk
+Node func parent:main
+
+Node type:45
+Node content:VAR
+Node func parent:main
+
+Node type:25
+Node content:w
+Node func parent:main
+
+Node type:25
+Node content:r
+Node func parent:main
+
+Node type:27
+Node content:INSTR_LIST
+Node func parent:main
+
+Node type:17
+Node content:=
+Node func parent:main
+
+Node type:25
+Node content:w
+Node func parent:main
+
+Node type:20
+Node content:FUNC_CALL
+Node func parent:main
+
+Node type:25
+Node content:encrypt_int32
+Node func parent:null
+
+Node type:36
+Node content:PARAM
+Node func parent:null
+
+Node type:25
+Node content:v
+Node func parent:main
+
+Node type:25
+Node content:k
+Node func parent:main
+
+Node type:25
+Node content:kk
+Node func parent:main
+
+Node type:26
+Node content:IF
+Node func parent:main
+
+Node type:28
+Node content:==
+Node func parent:main
+
+Node type:20
+Node content:FUNC_CALL
+Node func parent:main
+
+Node type:25
+Node content:decrypt_int32
+Node func parent:null
+
+Node type:36
+Node content:PARAM
+Node func parent:null
+
+Node type:25
+Node content:w
+Node func parent:main
+
+Node type:25
+Node content:k
+Node func parent:main
+
+Node type:25
+Node content:kk
+Node func parent:main
+
+Node type:25
+Node content:v
+Node func parent:main
+
+Node type:27
+Node content:INSTR_LIST
+Node func parent:main
+
+Node type:17
+Node content:=
+Node func parent:main
+
+Node type:25
+Node content:r
+Node func parent:main
+
+Node type:13
+Node content:1
+Node func parent:main
+
+Node type:27
+Node content:INSTR_LIST
+Node func parent:main
+
+Node type:17
+Node content:=
+Node func parent:main
+
+Node type:25
+Node content:r
+Node func parent:main
+
+Node type:13
+Node content:0
+Node func parent:main
+
+Node type:17
+Node content:=
+Node func parent:main
+
+Node type:25
+Node content:main
+Node func parent:main
+
+Node type:25
+Node content:r
+Node func parent:main
+
+

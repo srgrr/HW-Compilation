@@ -1,0 +1,5 @@
+VECTOR_SIZE 64
+
+FUNC MAIN
+MAIN = -(1+2+3+-4);
+CNUF

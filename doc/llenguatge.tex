@@ -1,0 +1,47 @@
+
+\section{Especificació del llenguatge}
+
+El llenguatge que dissenyem és molt simple i limitat. Això ens 
+permet concentrar-nos en la part més interessant del projecte, que és la de 
+traducció de \textit{software} a \textit{hardware}. De totes maneres, vegem 
+a continuació les principals característiques del llenguatge.
+
+Al principi de cada programa, el programador ha de fixar la mida dels vectors 
+de bits que s'utilitzaran. Llavors, la sintaxi del llenguatge permet aplicar 
+operacions molt senzilles sobre aquests vectors de bits: sumes i restes 
+(interpretant els vectors com a enters codificats en complement a dos); 
+conjuncions, disjuncions i negacions bit a bit; conjuncions, disjuncions i 
+negacions lògiques (entenent que tot vector diferent de zero codifica el valor 
+cert), i comparacions d'igualtat i desigualtat. La precedència dels operadors 
+és la mateixa que a \texttt{C}.
+
+Un programa està format per una o més funcions, una de les quals s'ha 
+d'anomenar \texttt{main}: aquesta és, com el seu nom indica, el punt 
+d'entrada a l'execució. Cadascuna d'aquestes funcions, excepte \texttt{main}, 
+pot rebre alguns arguments i ha de retornar exactament un vector de bits com 
+a sortida. A més, les variables utilitzades per una funció han d'haver estat 
+declarades al principi d'aquesta (això facilita el procés de traducció, ja 
+que, en traduir el programa a un circuit, cada variable correspon a un 
+registre), i una funció només té accés a aquestes variables, així com als seus 
+paràmetres. Una variable especial amb el mateix nom que la funció 
+emmagatzema el valor de retorn: aquesta s'ha d'assignar a l'última línia del 
+cos de la funció (per tal de facilitar l'anàlisi semàntica dels programes) i, 
+a diferència de les altres variables i paràmetres, no es pot utilitzar en 
+expressions dins de la pròpia funció. 
+
+Les instruccions bàsiques del llenguatge són assignacions i sentències de 
+control de flux. En particular, el llenguatge disposa d'una estructura 
+condicional (\textit{if-then-else}) i una estructura repetitiva 
+(\textit{while}). 
+
+A partir de les operacions mencionades prèviament i l'ús de literals 
+(especificats en bases binària, decimal o hexadecimal), variables i crides a 
+funcions, es construeixen les expressions bàsiques del llenguatge.
+
+Com ja s'ha explicat, aquest llenguatge no simula una memòria i tampoc permet 
+recursivitat. Així, totes les variables a utilitzar han d'haver estat 
+prèviament definides pel programador estàticament. Per tant, l'expressivitat 
+del llenguatge és força limitada (tot i que és més que suficient per a 
+l'objectiu d'aquest projecte).
+
+

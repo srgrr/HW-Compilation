@@ -1,0 +1,13 @@
+VECTOR_SIZE 0b0010101
+
+FUNC MOD
+	ARG A,B GRA
+	WHILE A>=B DO
+		A = A-B;
+	ELIHW;
+	MOD = A;
+CNUF
+
+FUNC main
+	main = MOD(180,25);
+CNUF

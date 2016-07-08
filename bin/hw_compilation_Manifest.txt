@@ -1,0 +1,2 @@
+Main-Class: hw_compilation.hw_compilation
+Class-Path: /home/sergio/hw-compilation/libs/antlr-3.4-complete.jar /home/sergio/hw-compilation/libs/commons-cli-1.2.jar

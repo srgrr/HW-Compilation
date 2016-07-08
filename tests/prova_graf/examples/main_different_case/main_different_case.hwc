@@ -1,0 +1,5 @@
+VECTOR_SIZE 64
+
+FUNC mAiN
+mAiN = 3;
+CNUF

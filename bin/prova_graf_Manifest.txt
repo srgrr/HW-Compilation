@@ -1,0 +1,2 @@
+Main-Class: prova_graf.prova_graf
+Class-Path: /home/sergio/HW-Compilation/libs/antlr-3.4-complete.jar

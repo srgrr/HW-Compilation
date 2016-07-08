@@ -1,0 +1,15 @@
+VECTOR_SIZE 64
+
+FUNC MOD
+	ARG A,B GRA
+	VAR Z RAV
+	WHILE A>=B DO
+		A = A-B;
+	ELIHW;
+	MOD = A;
+CNUF
+
+FUNC main
+	VAR Z RAV
+	main = MOD(180,25);
+CNUF

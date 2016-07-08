@@ -1,0 +1,164 @@
+\documentclass[a4paper,12pt,catalan]{article}
+
+\usepackage{mathpazo}
+\usepackage[scaled=1.03,varqu]{zi4}
+%\usepackage[scaled=0.92]{luximono}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+
+% Format
+\usepackage{geometry}
+\geometry{verbose,tmargin=3cm,bmargin=3cm,lmargin=3cm,rmargin=3cm}
+\usepackage{setspace}
+\onehalfspacing
+
+% Referències
+\usepackage[unicode=true,
+  bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+  breaklinks=false,pdfborder={0 0 0},backref=false,colorlinks=false]
+    {hyperref}
+\hypersetup{pdfauthor={Gispert Sánchez, Francesc; Rodríguez Guasch, Sergio}}
+\usepackage[style=numeric,sorting=nty,backend=biber]{biblatex}
+\bibliography{bibliografia-informe}
+\DeclareNameAlias{default}{last-first}
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
+
+% Gràfics
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.10}
+
+% Matemàtiques 
+\usepackage{mathtools}
+
+% Codi
+\usepackage{xcolor}
+\usepackage{listings}
+\lstloadlanguages{Java}
+\lstset{%
+  % backgroundcolor=\color{yellow!10},%
+  aboveskip=20pt,%
+  % belowskip=20pt,%
+  captionpos=b,%
+  frame=single,%
+  basicstyle=\small\ttfamily,%
+  numbers=left,%
+  numberstyle=\scriptsize,%
+  stepnumber=1,%
+  numbersep=5pt,%
+  extendedchars=true,%
+  showspaces=false,%
+  showtabs=false,%
+  breaklines=true,%
+  columns=full_flexible,%
+  escapeinside={(*@}{@*)}%
+}
+\lstdefinestyle{antlr-gram}{%
+  moredelim=[s][\color{green!70!black}]{'}{'},%
+  moredelim=*[s][\color{black}]{\{}{\}},%
+  moredelim=*[s][\color{black}]{[}{]},%
+  commentstyle={\color{gray}},%
+  morecomment=[l]{//},%
+  morecomment=[s]{/*}{*/},%
+  keywordstyle={\color{black}},%
+  emph={grammar,hw_compilation,options,tokens,@header,@lexer,header},%
+  emphstyle={\color{black}\bfseries},%
+  identifierstyle=\idstyle%
+}
+\lstdefinestyle{hw-comp}{%
+  morekeywords={VECTOR_SIZE,IF,THEN,ELSE,FI,WHILE,DO,ELIHW,FUNC,CNUF,ARG,GRA,VAR,RAV},%
+  keywordstyle=\bfseries\color{blue},%
+  alsoletter={0,1,2,3,4,5,6,7,8,9},
+  emph={0,1,2,3,4,5,6,7,8,9,0x,0b},%
+  emphstyle={\color{red}},%
+  identifierstyle=\numstyle%
+}
+\lstdefinestyle{java}{%
+  language=Java,%
+  keywordstyle=\bfseries\color{blue},%
+  commentstyle=\color{gray},%
+  stringstyle=\color{red},%
+  emphstyle=\bfseries\color{violet}%
+}
+\makeatletter
+\newcommand*\idstyle{%
+  \expandafter\id@style\the\lst@token\relax%
+}
+\def\id@style#1#2\relax{%
+  \ifcat#1\relax\else%
+    \ifnum`#1=\uccode`#1%
+      \color{blue}%
+    \else%
+      \ifnum`#1=\lccode`#1%
+        \color{violet}%
+      \fi%
+    \fi%
+  \fi%
+}
+\newcommand*\numstyle{%
+  \expandafter\num@style\the\lst@token\relax%
+}
+\def\rednum#1{%
+  \if!\ifnum9<1#1!\else_\fi
+    \color{red}\else\relax\fi
+}
+\def\num@style#1#2\relax{%
+  \ifcat#1\relax\else%
+    \rednum#1%
+  \fi%
+}
+\makeatother
+\renewcommand*\lstlistingname{Fragment de codi}
+
+% Altres paquets
+\usepackage[binary-units]{siunitx}  % Unitats del SI
+\usepackage{mleftright}  % Arregla problema d'espais abans de parèntesis
+\let\left\mleft
+\let\right\mright
+
+
+\begin{document}
+
+\title{Compiladors\\ Especificació de HW--Compilation}  %% TODO : Quin títol?
+
+\author{Gispert Sánchez, Francesc-Xavier \and Rodríguez Guasch, Sergio}
+
+\maketitle
+
+\noindent \rule[0.5ex]{1\columnwidth}{1pt}
+
+\tableofcontents
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{introduccio}
+
+\clearpage
+
+\input{llenguatge}
+
+\clearpage
+
+\input{moduls}
+
+\clearpage
+
+\input{grup}
+
+\clearpage
+
+\input{gramatica}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\nocite{*}
+\printbibliography
+\addcontentsline{toc}{section}{\refname}
+
+\end{document}

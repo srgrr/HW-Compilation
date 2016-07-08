@@ -1,0 +1,149 @@
+\section{Operacions sobre l'arbre sintàctic} \label{sec:graf}
+
+En aquesta secció, s'ofereix una explicació més detallada de la obtenció de 
+certa informació intermèdia que s'ha encabit en el mòdul d'anàlisi semàntica.
+
+Cal recordar que aquesta part és la que s'executa immediatament desprès de 
+l'anàlisi lèxico-sintàctica (si aquesta ha resultat reeixida). En aquesta part 
+es comprova que les restriccions més típiques de llenguatges similars a 
+l'emprat se satisfacin (per exemple, que no s'utilitzin variables no 
+declarades, que no es redeclarin variables i altres normes similars). Donades 
+les particularitats del llenguatge, també cal comprovar que cap de totes les 
+possibles successions de crides que poden tenir lloc al programa desemboquin 
+en recursivitat.
+
+Aquesta part d'anàlisi semàntica també s'encarrega de realitzar uns certs 
+càlculs necessaris per a la part posterior, la qual s'encarrega de traduir 
+finalment el programa donat en un circuit descrit en \texttt{Verilog} 
+sintetitzable. També es construeix, de forma simultània a les comprovacions 
+semàntiques i els càlculs anteriorment esmentats, un graf $G$ i el seu 
+transposat $G^{T}$, el qual conté com a nodes les funcions del programa. Una 
+aresta $(f,g)$ és present a $G$ si $f$ crida a $g$ en algun punt del programa 
+(o en diversos).
+
+La tasca d'anàlisi semàntica s'ha dividit en tres etapes: preprocessament, 
+recorregut explícit de l'AST generat al mòdul anterior i comprovació de 
+funcions no utilitzades i recursivitat. Cal remarcar que, al disseny presentat,
+les comprovacions semàntiques i els càlculs necessaris per a la següent fase 
+es duen a terme de forma simultània, ja que aquests dos procediments no 
+presenten cap mena de dependència entre ells.
+
+
+\subsection{Preprocessament}
+
+És útil obtenir certa informació prèviament al recorregut de l'AST obtingut a 
+la fase anterior. Aquesta tasca consisteix a obtenir els noms i les referències
+als nodes de les funcions declarades al programa. Amb aquestes dades es pot 
+comprovar que cap nom de funció es declari més d'una vegada i que hi hagi una 
+funció principal definida. Aquestes dades també permeten inicialitzar 
+estructures de dades auxiliars, com ara els dos grafs de crides (els 
+quals consistiran, després d'aquesta fase, en grafs amb tants nodes com 
+funcions hi hagi i sense cap aresta). Si es troba qualsevol error, l'execució 
+s'avorta en aquesta fase i no es passa a la següent.
+
+
+\subsection{Recorregut de l'AST}
+
+En aquesta etapa de l'anàlisi es recorre l'arbre sintàctic pròpiament dit. 
+Donades les necessitats específiques del llenguatge, la classe que representa 
+l'arbre sintàctic no és la pròpia d'\texttt{ANTLR}, sinó una extensió 
+d'aquesta. Concretament, s'ha estès per permetre que cada node contingui 
+informació sobre quina és la seva funció d'origen. Pels nodes que representen 
+una crida a funció també es guarda un enter que indica quin número de crida 
+representen dins la seva funció origen (és a dir, es tracta d'identificadors 
+de les crides: si l'identificador d'una crida és 5, vol dir que aquest node 
+representa la cinquena crida a funció que es pot trobar al codi de la seva 
+funció origen). Quelcom similar es fa per a les assignacions.
+
+L'estratègia de recorregut és senzilla: s'obté el node que representa la 
+funció principal i es recorre tot l'arbre accessible des d'aquest. Durant el 
+recorregut, es pot estar en diferents estats segons els tipus de node: funció, 
+llista d'instruccions, instrucció i expressió. A cada estat es comproven 
+diverses restriccions semàntiques i es construeixen diferents parts de les 
+estructures de dades auxiliars anteriorment comentades.
+
+En els nodes que representen funcions es comprova, en primer lloc, que el node 
+en qüestió no hagi estat processat prèviament. Tot seguit, es comprova que els 
+noms de les variables i paràmetres definits siguin consistents (tant entre 
+ells com amb els noms d'altres funcions). Per consistència hem d'entendre que 
+no hi hagi dos elements amb el mateix nom. Aprofitem per recordar que l'àmbit 
+de visibilitat pel que fa a variables i paràmetres és únicament local i que, 
+per tant, dues funcions poden tenir variables i paràmetres amb els mateixos 
+noms sense cap problema. Si es troba algun error en aquesta part, s'avorta 
+l'anàlisi sense passar a la següent fase. També s'aprofita per a inicialitzar 
+localment unes estructures de dades que mantenen el comptatge d'assignacions 
+realitzades a les variables o paràmetres d'aquesta funció, les quals seran 
+necessàries per a poder assignar l'identificador d'assignacions anteriorment 
+esmentat. Finalment, es comprova que l'última instrucció contingui una 
+assignació la part esquerra de la qual sigui el propi nom de la funció, ja que 
+això, en aquest llenguatge, es considera el valor de retorn. Donat que no 
+existeixen efectes laterals, es pot considerar un error el fet de tenir una 
+funció sense un valor de retorn correctament definit. Si totes les 
+comprovacions han resultat correctes, es procedeix a recórrer la llista 
+d'instruccions, la qual representa el codi de la funció. En l'anàlisi del cos 
+de la funció, doncs, es manté un registre del nom de la funció d'origen i els 
+noms visibles (arguments i variables).
+
+Per a les llistes d'instruccions, simplement es processen tots els fills (els 
+quals seran instruccions) de manera successiva, parant si algun d'aquests 
+provoca un error.
+
+Els nodes que representen instruccions es tracten per casos (un cas per tipus 
+d'instrucció). Els casos possibles són: assignació, condicional (\textit{if}) i 
+bucle (\textit{while}).
+
+Pel cas de l'assignació, es comprova, en primer lloc, que l'identificador de 
+la part esquerra sigui, en efecte, una variable visible dins l'àmbit de la 
+funció a la qual s'està. Tot seguit, s'assigna un identificador d'assignació 
+al node en qüestió i s'actualitza el comptatge d'aquestes. Finalment, si no hi 
+ha hagut errors, es recorre l'expressió que correspon a la part dreta de 
+l'assignació.
+
+En els condicionals, es comença recorrent l'expressió que correspon a la 
+condició. Si no hi ha hagut cap error, es recorre la llista d'instruccions del 
+\textit{then}. Si no hi ha hagut cap error, es comprova si existeix un últim 
+node del tipus llista d'instruccions (el qual representaria l'\textit{else}); 
+en cas afirmatiu, també es recorre. Els bucles es processen de forma similar, 
+obviant la part de l'\textit{else}.
+
+L'últim cas a tenir en compte són els nodes que corresponen a les expressions. 
+Aquests nodes també es tracten diferent segons de quin tipus siguin. Aquí 
+podem distingir els següents casos: identificador, literal enter, crida a 
+funció i operadors aritmètics.
+
+Pel cas de l'identificador, simplement es comprova que aquest faci referència 
+a algun dels noms de variables o paràmetres visibles en l'àmbit en qüestió.
+
+Els literals s'ignoren i no es fa res amb ells. Això es degut a què, en 
+aquesta part, no es necessita comprovar res dels seus valors: els problemes 
+que aquests podrien donar en temes de correcció es detecten a la fase 
+d'anàlisi sintàctica, la qual és anterior a aquesta.
+
+Les crides a funcions es tracten com segueix: es comprova primer que la funció 
+cridada existeix i que l'aritat proposada (el nombre d'arguments) coincideix 
+amb l'aritat real d'aquesta. També es recorren les expressions que representen 
+els paràmetres. Finalment, es recorre la funció que s'està cridant. 
+Addicionalment, s'afegeixen les arestes corresponents als dos grafs de crides.
+
+Finalment, pels operadors aritmètics o lògics es comproven recursivament les 
+expressions que es tenen com a operands.
+
+
+\subsection{Comprovació de recursivitat}
+
+Un cop acabat el processament descrit a la secció anterior, es procedeix a 
+comprovar que no existeixi cap successió de crides que desemboqui en 
+recursivitat, ja sigui directa o indirecta. Per això, es mira que cap funció 
+no es cridi a si mateixa i que el graf dirigit de crides $G$ generat no 
+contingui cap component fortament connexa de més d'un vèrtex. Donat que 
+l'algorisme fet servir per aquesta detecció és constructiu, es pot donar com a 
+missatge d'error el conjunt (o conjunts) exacte de funcions que creen 
+recursivitat. Com a efecte lateral de l'execució d'aquest algorisme, també 
+s'obté una col·lecció de noms de funcions, els quals representen les funcions 
+que són potencialment utilitzades en l'execució del programa. Això és 
+especialment útil per a la següent fase, ja que permet fer una traducció 
+selectiva, podent resultar en programes més petits que els que s'obtindrien si 
+la traducció fos del tot sistemàtica. Aquesta col·lecció també es fa servir per 
+emetre avisos de codi no emprat al programa final.
+
+

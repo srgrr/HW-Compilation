@@ -1,0 +1,76 @@
+VECTOR_SIZE 64
+
+
+FUNC mod_int64
+    ARG a, b GRA
+
+    IF b < 0 THEN
+        b = -b;
+    FI;
+    WHILE a < 0 DO
+        a = a + b;
+    ELIHW;
+    WHILE a >= b DO
+        a = a - b;
+    ELIHW;
+    mod_int64 = a;
+CNUF
+
+
+FUNC mult_int64
+    ARG a, b GRA
+    VAR m, s RAV
+
+    m = 0;
+    s = 1;
+    IF a < 0 THEN s = -s; a = -a; FI; 
+    IF b < 0 THEN s = -s; b = -b; FI;
+    WHILE a != 0 DO
+        IF a & 1 THEN 
+            m = m + b;
+        FI;
+        a = a >> 1;
+        b = b << 1;
+    ELIHW;
+    IF s == -1 THEN m = -m; FI;
+    mult_int64 = m;
+CNUF
+
+
+FUNC div_int64
+    ARG a, b GRA
+    VAR d, sa, sb RAV
+
+    d = 0;
+    sa = 1;
+    sb = 1;
+    IF a < 0 THEN sa = -1; a = -a; FI;
+    IF b < 0 THEN sb = -1; b = -b; FI;
+    WHILE a >= b DO 
+        a = a - b; 
+        d = d + 1; 
+    ELIHW;
+    IF sa == -1 AND a != 0 THEN 
+        d = d + 1; 
+    FI;
+    IF sa != sb THEN
+        d = -d;
+    FI;
+    div_int64 = d;
+CNUF
+
+
+FUNC main
+    VAR x, y, z RAV
+    
+    x = mult_int64(7, 15);
+    main = x;
+    y = div_int64(x, 3);
+    main = y;
+    z = mod_int64(-20, y);
+    main = z;
+    x = div_int64(x, z);
+    main = div_int64(15, x);
+    main = div_int64(-z, x);
+CNUF
+

@@ -1,0 +1,30 @@
+VECTOR_SIZE 64
+
+FUNC A
+	ARG X GRA
+	A = B(X);	
+CNUF
+
+FUNC B
+	ARG X GRA
+	B = C(X);
+CNUF
+
+FUNC C
+	ARG X GRA
+	C = D(X);
+CNUF
+
+FUNC D
+	ARG X GRA
+	D = E(X);
+CNUF
+
+FUNC E
+	ARG X GRA
+	E = A(X);
+CNUF
+
+FUNC MAIN
+MAIN = A(1) + E(2);
+CNUF

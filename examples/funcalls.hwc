@@ -1,0 +1,39 @@
+VECTOR_SIZE 64
+
+
+FUNC f
+    ARG x, y GRA
+    VAR a RAV
+
+    a = (x << 2) & 0xffffffffffffffff;
+    f = a + y;
+CNUF
+
+
+FUNC g
+    ARG t GRA
+    VAR u RAV
+
+    u = f(t, t) - t;
+    g = u - (t << 1);
+CNUF
+
+
+FUNC h
+    ARG x GRA
+    h = g(x);
+CNUF
+
+
+FUNC main
+    VAR a RAV
+    a = 1 + 2 + 3 - 5;
+    main = a;
+    main = f(a, 1);
+    main = a;
+    main = f(a, 1) - 1;
+    main = g(a);
+    main = h(a);
+CNUF
+
+

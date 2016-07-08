@@ -1,0 +1,46 @@
+\documentclass[tikz,12pt,border=12pt]{standalone}
+
+\usepackage{mathpazo}
+\usepackage[scaled=1.03,varqu]{zi4}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{pgf,tikz}
+\usetikzlibrary{circuits.logic.US}
+
+
+\begin{document}
+
+\begin{tikzpicture}[circuit logic US,%
+        dot/.style    = {anchor=base,fill,circle,inner sep=1.3pt}]
+
+\node[draw,rectangle,minimum width=2cm,minimum height=2cm] at (0,1.5) (Cond) {\textsc{Cond}};
+\node[dot] at (1.5,2) (aux1_cond) {};
+\node[or gate,inputs=nn] at (2.5,2) (or_cond) {};
+\node[dot] at (3.5,2) (aux2_cond) {};
+\node[dot] at (4,1) (aux3_cond) {};
+\node[and gate,inputs=nn] at (5,3) (and_enb_if) {};
+\node[and gate,inputs=in] at (5,1.1) (and_enb_else) {};
+\node[draw,rectangle,minimum width=2cm,minimum height=2cm] at (7,3.5) (WhileT) {\textsc{WhileT}};
+\node at (-4.5,1.1) (e_in) {\texttt{enable}};
+\node[or gate,inputs=nn] at (-2,1) (or_cond_in) {};
+\node at (7,1.1) (e_out) {\texttt{enable}}; 
+
+\draw[very thick] ($ (Cond.east) + (0,0.5) $) -- (aux1_cond);
+\draw (aux1_cond) |- (or_cond.input 1);
+\draw (aux1_cond) |- (or_cond.input 2);
+\draw (or_cond.output) |- (aux2_cond) |- (and_enb_if.input 1); \draw (aux2_cond) |- (and_enb_else.input 1);
+\draw ($ (Cond.east) + (0,-0.5) $) -- (aux3_cond);
+\draw (and_enb_if.output) |- ($ (WhileT.west) + (0,-0.5) $);
+\draw ($ (WhileT.east) + (0,-0.5) $) -- ++(0.5,0) -- ++(0,-3) -- ++(-11.5,0) |- (or_cond_in.input 2);
+\draw (aux3_cond) -- (and_enb_else.input 2); \draw (aux3_cond) |- (and_enb_if.input 2);
+\draw (e_in) -- (or_cond_in.input 1);
+\draw (or_cond_in.output) -- ($ (Cond.west) + (0,-0.5) $); 
+\draw (and_enb_else.output) -- (e_out);
+
+\end{tikzpicture}
+
+\end{document}
+
+
+

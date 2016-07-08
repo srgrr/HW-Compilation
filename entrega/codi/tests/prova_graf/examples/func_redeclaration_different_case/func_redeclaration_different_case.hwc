@@ -1,0 +1,14 @@
+VECTOR_SIZE 64
+FUNC MOD
+	MOD = 34;
+CNUF
+
+FUNC MoD
+	ARG A,B,C GRA
+	VAR D,E,F RAV
+	MoD = ((A-B) + (A-B+1) + B) << 2;
+CNUF
+
+FUNC MAIN
+	MAIN = MOD(30, 20, 10);
+CNUF

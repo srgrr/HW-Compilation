@@ -1,0 +1,42 @@
+
+\section{Mòduls del projecte}
+
+Dividirem el projecte essencialment en tres mòduls, la funció dels quals es 
+descriu breument a continuació.
+
+\subsection{Analitzador lèxico-sintàctic}
+Com a gairebé qualsevol llenguatge, a la primera part del \textit{pipeline} té 
+lloc l'anàlisi lèxica i sintàctica. Aquest mòdul, generat automàticament amb 
+\texttt{ANTLR}, serà el que rebi un fitxer de codi com a entrada i retorni, si 
+el codi resulta ser correcte a nivell sintàctic, el seu AST corresponent. En 
+aquesta secció considerarem que un codi és correcte si aquest es pot 
+obtenir com a resultat de les regles de producció de la gramàtica adjunta al 
+\autoref{lst:gramatica}.
+
+\subsection{Analitzador semàntic}
+Un cop generat l'arbre sintàctic, cal realitzar unes certes comprovacions que 
+assegurin que el programa presentat inicialment és totalment correcte i 
+traduïble. Al marge de les condicions habituals presents a la majoria de 
+llenguatges, cal assegurar-se també que no existeix cap successió de crides a 
+funcions que provoquin un cicle. Amb aquesta finalitat, el que es farà serà 
+generar un graf dirigit on cada funció serà un node i, donats dos nodes \(f\) 
+i \(g\), nomès existirà un arc \((f,g)\) si \(f\), en algun punt (o en 
+diversos) del seu codi, crida a \(g\). Considerarem que un programa és correcte 
+respecte de les crides quan el graf generat sigui acíclic. Aquesta restricció 
+imposada elimina, per tant, l'existència de qualsevol tipus de recursivitat 
+(però no les crides multinivell). L'arbre sintàctic generat a la primera fase 
+i el graf de crides derivat d'aquest seran l'entrada que rebrà el mòdul de la 
+següent (i última) fase.
+
+\subsection{Generador de \textit{hardware}}
+Finalment, un cop comprovada la consistència sintàctica i semàntica, es 
+realitza la traducció a \textit{hardware} del programa que s'ha rebut 
+inicialment com a entrada. Aquesta traducció consisteix a convertir el codi 
+en \texttt{Verilog} sintetitzable el qual descrigui un circuit que implementi 
+el programa inicial proposat. De manera similar a com fan molts llenguatges 
+compilats, aquesta traducció consistirà en l'aplicació sistemàtica de regles 
+predefinides que indiquen com s'ha d'implementar cadascuna de les construccions 
+del llenguatge. Cal especificar que, en aquesta fase, el graf de crides 
+prèviament generat per l'analitzador semàntic és especialment útil, ja que 
+aquest ens indicarà quins mòduls de funcions s'han d'interconnectar.
+
