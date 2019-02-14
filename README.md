@@ -16,4 +16,4 @@ Write your .hwc program, then run the command _java -jar <your path>/HWCompilati
 Then, good luck with Verilog hehe.
 
 ## More info
-This project was inspired by the paper _Hardware compilation: Translating programs into circuits_ of N.Wirth.
+This project was inspired by the paper _Hardware compilation: Translating programs into circuits_ by N.Wirth.
